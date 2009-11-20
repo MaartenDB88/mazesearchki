@@ -1,4 +1,4 @@
-#sumary opdracht kennis intensief
+#summary opdracht kennis intensief
 
 = MazeSearchKI =
 
