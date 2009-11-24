@@ -38,9 +38,10 @@ public class TreeSearch implements Search {
                 temp.add("Solution :\n" + cur.toString());
                 return temp;
             }
-            if (cur.getDepth() <= depthLimit)
-            for (Node child : NodeExpander.expandNode(problem, cur)){
-                openList.add(child);
+            if (depthLimit == -1 || cur.getDepth() <= depthLimit) {
+                for (Node child : NodeExpander.expandNode(problem, cur)) {
+                    openList.add(child);
+                }
             }
         }
     }
