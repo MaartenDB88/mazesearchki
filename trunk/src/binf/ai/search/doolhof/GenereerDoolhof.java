@@ -74,9 +74,12 @@ public class GenereerDoolhof {
             List<String> stringLijst = new ArrayList<String>();
             BufferedReader reader = null;
             try {
-                reader = new BufferedReader(new FileReader("C:\\voorbeeldDoolhof.txt"));
+                reader = new BufferedReader(new FileReader("voorbeeldDoolhof.txt"));
                 String text = null;
                 while ((text = reader.readLine()) != null) {
+                    text = text.trim().replaceAll("\\u0000", "" ) ;
+                    text = text.trim().replaceAll("\\ufffd", "" ) ;
+                    if(!text.isEmpty())
                     stringLijst.add(text);
                 }
 
@@ -96,35 +99,18 @@ public class GenereerDoolhof {
             }
 
             String[] dimensies = stringLijst.get(0).split(",");
-            List<String> doolhofStrings = new ArrayList<String>();
-
-            dim1 = Integer.parseInt(dimensies[0].trim());
-            dim2 = Integer.parseInt(dimensies[1].trim());
-
-            for (int i = 0; i < stringLijst.size(); i++) {
-                if (i > 0 && i % 2 == 0) //het gaat niet over de dimensies, en enkel op de even regels staat inhoud omdat hij telkens een witte regel tussenvoegt
-                {
-                    doolhofStrings.add(stringLijst.get(i));
-                }
-            }
+            dim1 = Integer.parseInt(dimensies[0]);
+            dim2 = Integer.parseInt(dimensies[1]);
 
             doolhof = new Status[dim1][dim2];
             int teller = 0;
-
-            for (String elem : doolhofStrings) {
+            stringLijst.remove(0);
+            for (String elem : stringLijst) {
                 char[] chars = elem.trim().toCharArray();
-                List<Character> charsList = new ArrayList<Character>();
-
-                for (int i = 0; i < chars.length; i++) {
-                    if (i % 2 == 0) {
-                        charsList.add(chars[i]);
-                    }
-
-                }
 
                 for (int i = 0; i < dim1; i++) {
 
-                    switch (charsList.get(i)) {
+                    switch (chars[i]) {
                         case 'o':
                             doolhof[i][teller] = Status.BLANK;
                             break;
@@ -138,7 +124,7 @@ public class GenereerDoolhof {
                             doolhof[i][teller] = Status.GOAL;
                             break;
                         default:
-                            ;
+                            
                     }
                 }
                 teller++;
