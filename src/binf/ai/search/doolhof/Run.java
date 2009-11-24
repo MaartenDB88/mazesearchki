@@ -4,13 +4,14 @@
  */
 package binf.ai.search.doolhof;
 
-import binf.ai.search.framework.GraphSearch;
-import binf.ai.search.nodestore.ClosedList;
-import binf.ai.search.nodestore.NodeStore;
-import binf.ai.search.nodestore.PriorityQueueNodeStore;
+import binf.ai.search.informed.BreadthFirstGraphSearch;
+import binf.ai.search.informed.DepthWithLimitGraphSearch;
+import binf.ai.search.informed.PriorityQueueGraphSearch;
 import binf.ai.search.problem.Problem;
 import binf.ai.search.problem.State;
 import binf.ai.search.uninformed.BreadthFirstTreeSearch;
+import binf.ai.search.uninformed.DepthFirstTreeSearchWithLimit;
+import binf.ai.search.uninformed.PriorityQueueTreeSearch;
 
 /**
  *
@@ -89,16 +90,23 @@ public class Run {
                 new DoolhofGoalTest(goalState), new DoolhofPathCostFunction(),
                 new DoolhofHeuristicFunction());
 
-        NodeStore openlist = new PriorityQueueNodeStore();
-        ClosedList closedList = new ClosedList();
-        int depth = 1;
-
         //new AStarTreeSearch(problem);
-        System.out.println("Breedte eerst zoeken");
+        System.out.println("Breedte eerst zoeken treesearch");
         new BreadthFirstTreeSearch(problem);
 
-        //new TreeSearch(problem, openlist, depth).search(problem);
-        System.out.println("GraphSearch");
-        System.out.println(new GraphSearch(problem, openlist , closedList,7).search(problem));
+        System.out.println("Diepte zoeken met limiet 9 treesearch");
+        new DepthFirstTreeSearchWithLimit(problem);
+
+        System.out.println("TreeSearch met priorityqueue");
+        new PriorityQueueTreeSearch(problem);
+
+        System.out.println("GraphSearch met priorityqueue");
+        new PriorityQueueGraphSearch(problem);
+
+        System.out.println("Breedte eerst zoeken graphsearch");
+        new BreadthFirstGraphSearch(problem);
+
+        System.out.println("Diepte eerst zoeken met limit 9 graphsearch");
+        new DepthWithLimitGraphSearch(problem);
     }
 }

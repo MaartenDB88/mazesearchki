@@ -3,13 +3,11 @@ package binf.ai.search.nodestore;
 import java.util.ArrayList;
 import java.util.List;
 
-
 public class ClosedList implements NodeStore {
 
-     private List<Node> list;
+    private List<Node> list;
 
-    public ClosedList()
-    {
+    public ClosedList() {
         list = new ArrayList<Node>();
     }
 
@@ -29,19 +27,12 @@ public class ClosedList implements NodeStore {
         return list.size();
     }
 
-    public boolean containsNode(Node node)
-    {
-        for(Node n:list)
-        {
-                if(n.getState().sameState(node.getState()))
-                    return true;
-
+    public boolean containsNode(Node node) {
+        for (Node n : list) {
+            if (n.getState().sameState(node.getState())) {
+                return true;
+            }
         }
-
-       return false;
-
+        return false;
     }
-
-
-	// implementatie van de closed list	
 }
