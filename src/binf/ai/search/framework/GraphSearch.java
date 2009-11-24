@@ -32,21 +32,25 @@ public class GraphSearch implements Search {
         // implementeer hier de graph search
         Node root = new Node(problem.getInitialState());
         openList.add(root);
-        while (!openList.isEmpty()) {
+        while (true) {
+            if (openList.isEmpty()) {
+                return null;
+            }
             Node cur = openList.remove();
-            if (problem.isGoalState(cur.getState())) {
+            boolean test = problem.isGoalState(cur.getState());
+            if (test) {
                 List<String> temp = new ArrayList<String>();
                 temp.add("Solution :\n" + cur.toString());
                 return temp;
             }
-
-            if (!closedList.containsNode(cur)) {
-                closedList.add(cur);
-                for (Node child : NodeExpander.expandNode(problem, root)) {
+            if (depthLimit == -1 || cur.getDepth() <= depthLimit  ) {
+                if(!closedList.containsNode(cur))
+                {
+                for (Node child : NodeExpander.expandNode(problem, cur)) {
                     openList.add(child);
+                }
                 }
             }
         }
-        return null;
     }
 }

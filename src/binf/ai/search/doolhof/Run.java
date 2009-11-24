@@ -4,9 +4,12 @@
  */
 package binf.ai.search.doolhof;
 
+import binf.ai.search.framework.GraphSearch;
 import binf.ai.search.framework.TreeSearch;
 import binf.ai.search.nodestore.ClosedList;
 import binf.ai.search.nodestore.NodeStore;
+import binf.ai.search.nodestore.PriorityQueueNodeStore;
+import binf.ai.search.nodestore.Queue;
 import binf.ai.search.nodestore.Stack;
 import binf.ai.search.problem.Problem;
 import binf.ai.search.problem.State;
@@ -89,16 +92,16 @@ public class Run {
                 new DoolhofGoalTest(goalState), new DoolhofPathCostFunction(),
                 new DoolhofHeuristicFunction());
 
-        NodeStore openlist = new Stack();
+        NodeStore openlist = new PriorityQueueNodeStore();
         ClosedList closedList = new ClosedList();
         int depth = 1;
         //new BreadthFirstTreeSearch(problem);
         //new AStarTreeSearch(problem);
-        TreeSearch tree = new TreeSearch(problem, openlist);
-        List<String> test2 = tree.search(problem);
-        System.out.println(test2);
+        //TreeSearch tree = new TreeSearch(problem, openlist);
+        //List<String> test2 = tree.search(problem);
+       // System.out.println(test2);
         //new TreeSearch(problem, openlist, depth).search(problem);
-        //new GraphSearch(problem, openlist, closedList).search(problem);
+        System.out.println(new GraphSearch(problem, openlist , closedList,7).search(problem));
         //new GraphSearch(problem, openlist, closedList, depth).search(problem);
     }
 }
