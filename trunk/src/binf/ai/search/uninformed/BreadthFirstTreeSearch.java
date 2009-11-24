@@ -5,6 +5,7 @@ import binf.ai.search.framework.TreeSearch;
 import binf.ai.search.nodestore.NodeStore;
 import binf.ai.search.nodestore.Queue;
 import binf.ai.search.problem.Problem;
+import java.util.List;
 // import ...
 
 // voorbeeld raamwerk voor een klasse van een niet geinformeerde
@@ -17,6 +18,7 @@ public class BreadthFirstTreeSearch extends TreeSearch {
     public BreadthFirstTreeSearch(Problem problem) {
         super(problem, openlist);
         // instantieer een TreeSearch met de correcte parameters
-        throw new UnsupportedOperationException("Not supported yet.");
+        List<String> resultaat = this.search(problem);
+        System.out.println(resultaat);
     }
 }
