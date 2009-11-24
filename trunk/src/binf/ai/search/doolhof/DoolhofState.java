@@ -53,4 +53,8 @@ public class DoolhofState implements State {
     public Successor getSuccessor(String action){
         return successors.get(action);
     }
+
+    public void addSuccessor(String action, State state){
+        successors.put(action, new Successor(action, state));
+    }
 }
