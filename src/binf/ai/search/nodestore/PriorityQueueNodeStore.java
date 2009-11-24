@@ -8,7 +8,7 @@ public class PriorityQueueNodeStore implements NodeStore {
     private PriorityQueue<Node> list;
 
     public PriorityQueueNodeStore(){
-        list = new PriorityQueue<Node>(0, new Comparator<Node>() {
+        list = new PriorityQueue<Node>(1, new Comparator<Node>() {
 
             public int compare(Node o1, Node o2) {
                 return Float.compare(o1.getPathCost(), o2.getPathCost());

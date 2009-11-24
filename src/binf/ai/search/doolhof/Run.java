@@ -7,7 +7,7 @@ package binf.ai.search.doolhof;
 import binf.ai.search.framework.TreeSearch;
 import binf.ai.search.nodestore.ClosedList;
 import binf.ai.search.nodestore.NodeStore;
-import binf.ai.search.nodestore.Queue;
+import binf.ai.search.nodestore.Stack;
 import binf.ai.search.problem.Problem;
 import binf.ai.search.problem.State;
 import java.util.List;
@@ -89,7 +89,7 @@ public class Run {
                 new DoolhofGoalTest(goalState), new DoolhofPathCostFunction(),
                 new DoolhofHeuristicFunction());
 
-        NodeStore openlist = new Queue();
+        NodeStore openlist = new Stack();
         ClosedList closedList = new ClosedList();
         int depth = 1;
         //new BreadthFirstTreeSearch(problem);

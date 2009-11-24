@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class TreeSearch implements Search {
 
-    private static int NO_DEPTH_LIMIT = -1;
+    private static int NO_DEPTH_LIMIT = 7;
     private NodeStore openList;
     private int depthLimit;
 
@@ -29,7 +29,6 @@ public class TreeSearch implements Search {
 
         while (true) {
             if (openList.isEmpty()) {
-                System.out.println("epic fail");
                 return null;
             }
             Node cur = openList.remove();
@@ -39,6 +38,7 @@ public class TreeSearch implements Search {
                 temp.add("Solution :\n" + cur.toString());
                 return temp;
             }
+            if (cur.getDepth() <= depthLimit)
             for (Node child : NodeExpander.expandNode(problem, cur)){
                 openList.add(child);
             }
