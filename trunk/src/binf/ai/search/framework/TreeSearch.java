@@ -7,7 +7,7 @@ import java.util.ArrayList;
 
 public class TreeSearch implements Search {
 
-    private static int NO_DEPTH_LIMIT = 7;
+    private static int NO_DEPTH_LIMIT = -1;
     private NodeStore openList;
     private int depthLimit;
 
