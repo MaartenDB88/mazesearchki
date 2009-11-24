@@ -31,7 +31,14 @@ public class ClosedList implements NodeStore {
 
     public boolean containsNode(Node node)
     {
-       return list.contains(node);
+        for(Node n:list)
+        {
+                if(n.getState().sameState(node.getState()))
+                    return true;
+
+        }
+
+       return false;
 
     }
 
