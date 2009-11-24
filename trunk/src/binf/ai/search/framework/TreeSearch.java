@@ -28,14 +28,18 @@ public class TreeSearch implements Search {
         openList.add(root);
 
         while (true) {
-            if (openList.isEmpty()) return new ArrayList<String>();
+            if (openList.isEmpty()) {
+                System.out.println("epic fail");
+                return null;
+            }
             Node cur = openList.remove();
-            if (problem.isGoalState(cur.getState())) {
+            boolean test = problem.isGoalState(cur.getState());
+            if (test) {
                 List<String> temp = new ArrayList<String>();
                 temp.add("Solution :\n" + cur.toString());
                 return temp;
             }
-            for (Node child : NodeExpander.expandNode(problem, root)){
+            for (Node child : NodeExpander.expandNode(problem, cur)){
                 openList.add(child);
             }
         }

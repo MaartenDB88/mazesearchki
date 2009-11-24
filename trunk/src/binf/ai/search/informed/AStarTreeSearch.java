@@ -19,5 +19,6 @@ public class AStarTreeSearch extends TreeSearch {
     private static Comparator<Node> getComparator(final Problem problem) {
         // dit zal je waarschijnlijk ook nodig hebben voor
         // sommige zoekmethodes (zoals A* zoeken)...
+        throw new UnsupportedOperationException("Not supported yet.");
     }
 }

@@ -58,4 +58,12 @@ public class DoolhofState implements State {
     public void addSuccessor(String action, State state){
         successors.put(action, new Successor(action, state));
     }
+
+    public void removeSuccessor(String action){
+        successors.remove(action);
+    }
+
+    public String toString(){
+        return "(" + xCord + "," + yCord + ")" + " " + status;
+    }
 }
