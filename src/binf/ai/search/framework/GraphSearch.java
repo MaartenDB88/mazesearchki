@@ -43,12 +43,16 @@ public class GraphSearch implements Search {
                 temp.add("Solution :\n" + cur.toString());
                 return temp;
             }
-            if (depthLimit == -1 || cur.getDepth() <= depthLimit  ) {
-                if(!closedList.containsNode(cur))
-                {
-                for (Node child : NodeExpander.expandNode(problem, cur)) {
-                    openList.add(child);
-                }
+
+            if (!closedList.containsNode(cur)) {
+                 closedList.add(cur);
+                if (depthLimit == -1 || cur.getDepth() <= depthLimit) {
+
+                    for (Node child : NodeExpander.expandNode(problem, cur)) {
+
+                        openList.add(child);
+                    }
+                   
                 }
             }
         }
