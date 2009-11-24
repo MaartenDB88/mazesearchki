@@ -22,18 +22,17 @@ public class GenereerDoolhof
   //int -> 0 (nul) = vrij vak; 1 = obstakel; 2 = startpositie agent, 3 = eindpositie;
   //String -> o (letter)  = vrij vak; x = obstakel; s = startpositie , g = eindpositie ;
 
-  private int doolhof[][];
+  private Status[][] doolhof;
   private int obstakel = 0;
-  private int[][] doolhofArray;
 
     public GenereerDoolhof()
     {
         
     }
-    public int[][] genereerDoolhof(int dim1, int dim2)
+    public Status[][] genereerDoolhof(int dim1, int dim2)
     {
  
-        doolhof = new int[dim1][dim2];
+        doolhof = new Status[dim1][dim2];
         
         //max 25 procent obstakels
         int maxAantalObstalkels = (dim1 * dim2) / 4;
@@ -45,18 +44,18 @@ public class GenereerDoolhof
       {
           for(int y = 0; y < dim2; y++)
           {
-              doolhof[x][y] = 0;
+              doolhof[x][y] = Status.BLANK;
           }
       }
         
         //startpositie agent instellen
-                int start = random.nextInt(dim2 - 1);
-                doolhof[0][start] = 2;
+                int start = random.nextInt(dim1 - 1);
+                doolhof[start][0] = Status.START;
 
         //uitgang instellen
 
-                int uitgang = random.nextInt(dim2 - 1);
-                doolhof[dim2 - 1][uitgang] = 3;
+                int uitgang = random.nextInt(dim1 - 1);
+                doolhof[uitgang][dim2 - 1] = Status.GOAL;
 
         //obstakels instellen
         for(int x = 0; x < dim1; x ++)
@@ -64,10 +63,12 @@ public class GenereerDoolhof
             for(int y = 0; y < dim2; y++)
             {
                 int next = random.nextInt(3);
-                if(next == 1 && doolhof[x][y] != 2 && doolhof[x][y]!= 3 && obstakel < maxAantalObstalkels)
+                if(next == 1 && doolhof[x][y] != Status.START
+                        && doolhof[x][y]!= Status.GOAL
+                        && obstakel < maxAantalObstalkels)
                 {
                     obstakel ++;
-                    doolhof[x][y] = next;
+                    doolhof[x][y] = Status.OBSTACLE;
                 }
             }
         }
@@ -76,7 +77,7 @@ public class GenereerDoolhof
     }
 
     //deze methode werkt nog niet helemaal (deze werkt als fIs.read() automatisch zijn positie zou opslaan)
-    public int[][] leesDoolhofVanBestand()
+    public Status[][] leesDoolhofVanBestand()
     {
         try
         {
@@ -133,12 +134,11 @@ public class GenereerDoolhof
             //System.out.println(e);
         }
   
-        doolhofArray = new int[dim1][dim2];
+        doolhof = new Status[dim1][dim2];
         int teller = 0;
       
         for(String elem: doolhofStrings)
         {
-   
             char[] chars = elem.trim().toCharArray();
             List<Character> charsList = new ArrayList<Character>();
           
@@ -151,15 +151,6 @@ public class GenereerDoolhof
                 }
                 
             }
-            for(char el: charsList)
-            {
-                System.out.println(el);
-            }
-            for(int i = 0; i < chars.length; i++)
-            {
-                //System.out.println("after: " + i + " :" + chars[i]);
-            }
-           // System.out.println("length: " + chars.length);
            
             for (int i = 0; i < dim1; i++)
             {
@@ -167,16 +158,16 @@ public class GenereerDoolhof
                 switch (charsList.get(i))
                  {
                     case 'o':
-                        doolhofArray[teller][i] = 0;
+                        doolhof[teller][i] = Status.BLANK;
                         break;
                     case 'x':
-                        doolhofArray[teller][i] = 1;
+                        doolhof[teller][i] = Status.OBSTACLE;
                         break;
                     case 's':
-                        doolhofArray[teller][i] = 2;
+                        doolhof[teller][i] = Status.START;
                         break;
                     case 'g':
-                        doolhofArray[teller][i] = 3;
+                        doolhof[teller][i] = Status.GOAL;
                         break;
                     default:
                         ;
@@ -191,6 +182,6 @@ public class GenereerDoolhof
             System.out.println("fout:" + ex.getClass() + ex.getMessage());
             ex.printStackTrace();
         }
-          return doolhofArray;
+          return doolhof;
     }
 }

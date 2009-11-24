@@ -18,10 +18,10 @@ public class DoolhofState implements State {
 
     private int xCord;
     private int yCord;
-    private String status;
+    private Status status;
     private Map<String, Successor> successors;
 
-    public DoolhofState(int xCord, int yCord, String status) {
+    public DoolhofState(int xCord, int yCord, Status status) {
         this.xCord = xCord;
         this.yCord = yCord;
         this.status = status;
@@ -39,7 +39,7 @@ public class DoolhofState implements State {
         }
     }
 
-    public String getStatus() {
+    public Status getStatus() {
         return status;
     }
 

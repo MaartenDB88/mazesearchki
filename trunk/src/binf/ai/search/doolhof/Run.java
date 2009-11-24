@@ -15,7 +15,7 @@ public class Run {
     public static void main(String[] args) {
         int dim1 = 8;
         int dim2 = 8;
-        int[][] doolhof = new int[dim1][dim2];
+//        int[][] doolhof = new int[dim1][dim2];
 
         GenereerDoolhof dh = new GenereerDoolhof();
 
@@ -33,7 +33,7 @@ public class Run {
 //        }
 //        System.out.println();
 
-        int[][] test = new int[dim1][dim2];
+        Status[][] test = new Status[dim1][dim2];
         test = dh.leesDoolhofVanBestand();
         for (int x = 0; x < dim1; x++) {
             for (int y = 0; y < dim2; y++) {
@@ -45,10 +45,11 @@ public class Run {
         }
         System.out.println();
 
+
         State[][] doolhofMetStates = new State[dim1][dim2];
         for (int x = 0; x < dim1; x++) {
             for (int y = 0; y < dim2; y++) {
-                doolhofMetStates[x][y] = new DoolhofState(x, y, doolhof[x][y] + "");
+                doolhofMetStates[x][y] = new DoolhofState(x, y, test[x][y]);
             }
         }
     }
