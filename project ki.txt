@@ -1,0 +1,11 @@
+BUGS
+====
+dimensies dynamisch maken
+sameState optimaliseren
+Depth first tree search controleren
+Breadthfirst maken
+
+TODO
+====
+Graph search - Maarten
+A star (+ heuristic) - Simon
