@@ -21,7 +21,8 @@ public class DoolhofSuccessorFunction implements SuccessorFunction {
         DoolhofState doolhofState = (DoolhofState)state;
         List<Successor> successors = new ArrayList<Successor>();
         for (Action action : Action.values()){
-            successors.add(doolhofState.getSuccessor(action.toString()));
+            if (doolhofState.getSuccessor(action.toString()) != null)
+                successors.add(doolhofState.getSuccessor(action.toString()));
         }
         return successors;
     }

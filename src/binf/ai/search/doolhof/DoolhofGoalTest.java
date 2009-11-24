@@ -21,8 +21,7 @@ public class DoolhofGoalTest implements GoalTest {
     }
 
     public boolean isGoalState(State state) {
-        if (goal.sameState(state)) return true;
-        else return false;
+        return goal.sameState(state);
     }
 
 }

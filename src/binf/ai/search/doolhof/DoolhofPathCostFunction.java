@@ -15,7 +15,7 @@ import binf.ai.search.problem.State;
 public class DoolhofPathCostFunction implements PathCostFunction {
 
     public float calculatePathCost(State fromState, State toState, String action) {
-        if (((DoolhofState)fromState).sameState((DoolhofState)toState)){
+        if (!((DoolhofState)fromState).sameState((DoolhofState)toState)){
             return Action.valueOf(action).getCost();
         } else {
             return 0;
