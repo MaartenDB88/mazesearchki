@@ -19,13 +19,13 @@ public class DoolhofState implements State {
     private int xCord;
     private int yCord;
     private Status status;
-    private List<Successor> successors;
+    private List<State> successors;
 
     public DoolhofState(int xCord, int yCord, Status status) {
         this.xCord = xCord;
         this.yCord = yCord;
         this.status = status;
-        successors = new ArrayList<Successor>();
+        successors = new ArrayList<State>();
     }
 
     public boolean sameState(State state) {
@@ -52,7 +52,7 @@ public class DoolhofState implements State {
     }
 
     public void addSuccessor(String action, State state){
-        successors.add(new Successor(action, state));
+        successors.add(state);
     }
 
     @Override
@@ -64,7 +64,7 @@ public class DoolhofState implements State {
         this.status = status;
     }
 
-    List<Successor> getSuccessors() {
+    List<State> getSuccessors() {
         return successors;
     }
 }
