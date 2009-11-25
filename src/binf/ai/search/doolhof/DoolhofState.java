@@ -66,4 +66,8 @@ public class DoolhofState implements State {
     public String toString(){
         return "(" + xCord + "," + yCord + ")" + " " + status;
     }
+
+    public void setStatus(Status status) {
+        this.status = status;
+    }
 }

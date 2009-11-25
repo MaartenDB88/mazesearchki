@@ -8,7 +8,6 @@ import binf.ai.search.informed.BreadthFirstGraphSearch;
 import binf.ai.search.informed.DepthWithLimitGraphSearch;
 import binf.ai.search.informed.PriorityQueueGraphSearch;
 import binf.ai.search.problem.Problem;
-import binf.ai.search.problem.State;
 import binf.ai.search.uninformed.BreadthFirstTreeSearch;
 import binf.ai.search.uninformed.DepthFirstTreeSearchWithLimit;
 import binf.ai.search.uninformed.PriorityQueueTreeSearch;
@@ -20,12 +19,12 @@ import binf.ai.search.uninformed.PriorityQueueTreeSearch;
 public class Run {
 
     public static void main(String[] args) {
-        int dim1 = 8;
-        int dim2 = 8;
-//        int[][] doolhof = new int[dim1][dim2];
 
         GenereerDoolhof dh = new GenereerDoolhof();
-
+// <editor-fold defaultstate="collapsed" desc="ouden brol">
+      //  int dim1 = 8;
+    //    int dim2 = 8;
+//        int[][] doolhof = new int[dim1][dim2];
 //        doolhof = dh.genereerDoolhof(dim1, dim2);
 //        for (int x = 0; x < dim1; x++)
 //        {
@@ -39,7 +38,7 @@ public class Run {
 //            }
 //        }
 //        System.out.println();
-
+/*
         Status[][] test = new Status[dim1][dim2];
         test = dh.leesDoolhofVanBestand();
         for (int y = 0; y < dim2; y++) {
@@ -84,13 +83,22 @@ public class Run {
                     }
                 }
             }
-        }
+        }  
 
+        dh.genereerDoolhof2(100);
+        dh.printDoolhof();
+        State initState = dh.getInitState();
+        State goalState = dh.getGoalState();
         Problem problem = new Problem(initState, new DoolhofSuccessorFunction(),
                 new DoolhofGoalTest(goalState), new DoolhofPathCostFunction(),
                 new DoolhofHeuristicFunction(goalState));
+*/
+//</editor-fold>
 
         //new AStarTreeSearch(problem);
+        Problem problem = dh.getDoolhofVanBestand();
+        dh.printDoolhof();
+        
         System.out.println("Breedte eerst zoeken treesearch");
         new BreadthFirstTreeSearch(problem);
 
@@ -101,12 +109,15 @@ public class Run {
         new PriorityQueueTreeSearch(problem);
 
         System.out.println("GraphSearch met priorityqueue");
-        new PriorityQueueGraphSearch(problem);
+        new PriorityQueueGraphSearch(dh.getGegenereerdProblem(100));
+        
+        
 
         System.out.println("Breedte eerst zoeken graphsearch");
         new BreadthFirstGraphSearch(problem);
 
         System.out.println("Diepte eerst zoeken met limit 9 graphsearch");
         new DepthWithLimitGraphSearch(problem);
+        
     }
 }
