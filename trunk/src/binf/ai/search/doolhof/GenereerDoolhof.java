@@ -30,12 +30,8 @@ public class GenereerDoolhof {
     public GenereerDoolhof() {
     }
     
-    public State[][] leesDoolhofVanBestand() {
+    private State[][] leesDoolhofVanBestand(File file) {
         try {
-            File file = new File("voorbeeldDoolhof.txt");
-            int dim1 = 0;
-            int dim2 = 0;
-
             List<String> stringLijst = new ArrayList<String>();
             BufferedReader reader = null;
             try {
@@ -65,14 +61,14 @@ public class GenereerDoolhof {
             }
 
             String[] dimensies = stringLijst.remove(0).split(",");
-            dim1 = Integer.parseInt(dimensies[0]);
+            int dimensie = Integer.parseInt(dimensies[0]);
 
-            vierkant = new State[dim1][dim1];
+            vierkant = new State[dimensie][dimensie];
             int teller = 0;
             for (String elem : stringLijst) {
                 char[] chars = elem.trim().toCharArray();
 
-                for (int i = 0; i < dim1; i++) {
+                for (int i = 0; i < dimensie; i++) {
 
                     switch (chars[i]) {
                         case 'o':
@@ -163,8 +159,8 @@ public class GenereerDoolhof {
                 new DoolhofHeuristicFunction(startBestand));
     }
 
-    public Problem getDoolhofVanBestand() {
-        leesDoolhofVanBestand();
+    public Problem getDoolhofVanBestand(File file) {
+        leesDoolhofVanBestand(file);
         return new Problem(startBestand, new DoolhofSuccessorFunction(),
                 new DoolhofGoalTest(eindeBestand), new DoolhofPathCostFunction(),
                 new DoolhofHeuristicFunction(eindeBestand));
