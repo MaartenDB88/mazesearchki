@@ -17,12 +17,15 @@ import java.util.List;
  * @author Elias
  */
 public class BreadthFirstGraphSearch extends GraphSearch {
-
-    private static NodeStore openList = new Queue();
-    private static ClosedList closedList = new ClosedList();
+    private static NodeStore getOpenList() {
+        return new Queue();
+    }
+    private static ClosedList getClosedList() {
+        return new ClosedList();
+    }
 
     public BreadthFirstGraphSearch(Problem problem){
-        super(problem, openList, closedList);
+        super(problem, getOpenList(), getClosedList());
 
         List<String> resultaat = this.search(problem);
         System.out.println(resultaat);
