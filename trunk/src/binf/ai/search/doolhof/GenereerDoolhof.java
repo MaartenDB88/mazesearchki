@@ -7,6 +7,7 @@ package binf.ai.search.doolhof;
 import binf.ai.search.problem.Problem;
 import binf.ai.search.problem.State;
 import java.io.BufferedReader;
+import java.io.File;
 import java.io.FileNotFoundException;
 import java.io.FileReader;
 import java.io.IOException;
@@ -79,13 +80,14 @@ public class GenereerDoolhof {
 
     public State[][] leesDoolhofVanBestand() {
         try {
+            File file = new File("voorbeeldDoolhof.txt");
             int dim1 = 0;
             int dim2 = 0;
 
             List<String> stringLijst = new ArrayList<String>();
             BufferedReader reader = null;
             try {
-                reader = new BufferedReader(new FileReader("voorbeeldDoolhof.txt"));
+                reader = new BufferedReader(new FileReader(file));
                 String text = null;
                 while ((text = reader.readLine()) != null) {
                     text = text.trim().replaceAll("\\u0000", "");
@@ -110,12 +112,11 @@ public class GenereerDoolhof {
                 }
             }
 
-            String[] dimensies = stringLijst.get(0).split(",");
+            String[] dimensies = stringLijst.remove(0).split(",");
             dim1 = Integer.parseInt(dimensies[0]);           
 
             vierkant = new State[dim1][dim1];
             int teller = 0;
-            stringLijst.remove(0);
             for (String elem : stringLijst) {
                 char[] chars = elem.trim().toCharArray();
 
