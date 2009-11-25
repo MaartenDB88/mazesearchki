@@ -103,12 +103,12 @@ public class GenereerDoolhof {
 
     public State[][] genereerDoolhof(int dimensie) {
         Random random = new Random();
-        int maxAantalObstalkels = (dimensie * dimensie) / 4;
+        int maxAantalObstakels = (dimensie * dimensie) / 4;
         vierkant = new DoolhofState[dimensie][dimensie];
 
         //alle status op blank
-        for (int x = 0; x < dimensie; x++) {
-            for (int y = 0; y < dimensie; y++) {
+        for (int y = 0; y < dimensie; y++) {
+            for (int x = 0; x < dimensie; x++) {
                 vierkant[x][y] = new DoolhofState(x, y, Status.BLANK);
             }
         }
@@ -124,13 +124,13 @@ public class GenereerDoolhof {
         eindeBestand = vierkant[einde][dimensie - 1];
 
         //obstakels
-        while (maxAantalObstalkels > 0) {
+        while (maxAantalObstakels > 0) {
             int randomRij = random.nextInt(dimensie);
             int randomKolom = random.nextInt(dimensie);
 
             if (((DoolhofState) vierkant[randomRij][randomKolom]).getStatus() == Status.BLANK) {
                 ((DoolhofState) vierkant[randomRij][randomKolom]).setStatus(Status.OBSTACLE);
-                maxAantalObstalkels--;
+                maxAantalObstakels--;
             }
         }
 
@@ -156,7 +156,7 @@ public class GenereerDoolhof {
         genereerDoolhof(dimensie);
         return new Problem(startBestand, new DoolhofSuccessorFunction(),
                 new DoolhofGoalTest(eindeBestand), new DoolhofPathCostFunction(),
-                new DoolhofHeuristicFunction(startBestand));
+                new DoolhofHeuristicFunction(eindeBestand));
     }
 
     public Problem getDoolhofVanBestand(File file) {
