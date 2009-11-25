@@ -27,21 +27,24 @@ public class Run {
         GenereerDoolhof dh = new GenereerDoolhof();
         Problem problem = null;
 
-        if (args.length != 0){
+        if (args.length != 0) {
             try {
-                File file = new File(args[1]);
-                problem = dh.getDoolhofVanBestand(new File("voorbeeldDoolhof.txt"));
-            } catch (Exception e){
-                System.out.println("Error making file object");
-                System.exit(-1);
+                problem = dh.getGegenereerdProblem(Integer.parseInt(args[0]));
+            } catch (Exception e) {
+                System.out.println("Argument is not an Integer");
+                try {
+                    File file = new File(args[0]);
+                    problem = dh.getDoolhofVanBestand(file);
+                } catch (Exception ex) {
+                    System.out.println("Error making file object or using diffrent dimension.");
+                    System.exit(-1);
+                }
             }
+
         } else {
             problem = dh.getGegenereerdProblem(DEFAULT_DIMENSIE);
         }
         dh.printDoolhof();
-
-       
-        
 
         System.out.println("Breedte eerst zoeken treesearch");
         new BreadthFirstTreeSearch(problem);
