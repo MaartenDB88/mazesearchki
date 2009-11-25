@@ -3,7 +3,7 @@ package binf.ai.search.framework;
 import java.util.List;
 import binf.ai.search.nodestore.*;
 import binf.ai.search.problem.*;
-import java.util.Arrays;
+import java.util.ArrayList;
 
 public class TreeSearch implements Search {
 
@@ -26,14 +26,23 @@ public class TreeSearch implements Search {
         // the initial state
         Node root = new Node(problem.getInitialState());
         openList.add(root);
+        int aantal = 1;
 
         while (!openList.isEmpty()) {
             Node cur = openList.remove();
-            if (problem.isGoalState(cur.getState()))
-                return Arrays.asList("Solution :\n" + cur.toString());
+            if (problem.isGoalState(cur.getState())){
+                List<String> temp = new ArrayList<String>();
+                temp.add(cur.getPathFromRoot().toString());
+                temp.add("Solution :\n" +
+                        "Number of nodes : " + aantal +
+                        "\n" + cur.toString());
+                return temp;
+            }
             if (cur.getDepth() <= depthLimit)
-                for (Node child : NodeExpander.expandNode(problem, cur))
+                for (Node child : NodeExpander.expandNode(problem, cur)){
                     openList.add(child);
+                    aantal++;
+                }
         }
         return null;
     }

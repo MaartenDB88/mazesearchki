@@ -32,6 +32,8 @@ public class GraphSearch implements Search {
         // implementeer hier de graph search
         Node root = new Node(problem.getInitialState());
         openList.add(root);
+        int aantal=1;
+
         while (true) {
             if (openList.isEmpty()) {
                 return null;
@@ -40,7 +42,10 @@ public class GraphSearch implements Search {
             boolean test = problem.isGoalState(cur.getState());
             if (test) {
                 List<String> temp = new ArrayList<String>();
-                temp.add("Solution :\n" + cur.toString());
+                temp.add(cur.getPathFromRoot().toString());
+                temp.add("Solution :\n" +
+                        "Number of nodes : " + aantal +
+                        "\n" + cur.toString());
                 return temp;
             }
 
@@ -49,8 +54,8 @@ public class GraphSearch implements Search {
                 if (depthLimit == -1 || cur.getDepth() <= depthLimit) {
 
                     for (Node child : NodeExpander.expandNode(problem, cur)) {
-
                         openList.add(child);
+                        aantal++;
                     }
                    
                 }

@@ -83,11 +83,11 @@ public class Node {
 	}
 
 	public String toString() {
-		String str = "Toestand:\n";
+		String str = "Toestand: \t";
 		str = str + this.getState().toString() + "\n";
-		str = str + "Padkost: " + this.getPathCost() + "\n";
-		str = str + "Diepte: " + this.getDepth() + "\n";
-		str = str + "Actie: " + this.getAction() + "\n";
+		str = str + "Padkost: \t" + this.getPathCost() + "\n";
+		str = str + "Diepte: \t" + this.getDepth() + "\n";
+		str = str + "Actie: \t" + this.getAction() + "\n";
 		return str;
 	}
 }
