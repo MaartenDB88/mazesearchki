@@ -3,11 +3,11 @@ package binf.ai.search.framework;
 import java.util.List;
 import binf.ai.search.nodestore.*;
 import binf.ai.search.problem.*;
-import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TreeSearch implements Search {
 
-    private static int NO_DEPTH_LIMIT = -1;
+    private static int NO_DEPTH_LIMIT = Integer.MAX_VALUE;
     private NodeStore openList;
     private int depthLimit;
 
@@ -27,22 +27,14 @@ public class TreeSearch implements Search {
         Node root = new Node(problem.getInitialState());
         openList.add(root);
 
-        while (true) {
-            if (openList.isEmpty()) {
-                return null;
-            }
+        while (!openList.isEmpty()) {
             Node cur = openList.remove();
-            boolean test = problem.isGoalState(cur.getState());
-            if (test) {
-                List<String> temp = new ArrayList<String>();
-                temp.add("Solution :\n" + cur.toString());
-                return temp;
-            }
-            if (depthLimit == -1 || cur.getDepth() <= depthLimit) {
-                for (Node child : NodeExpander.expandNode(problem, cur)) {
+            if (problem.isGoalState(cur.getState()))
+                return Arrays.asList("Solution :\n" + cur.toString());
+            if (cur.getDepth() <= depthLimit)
+                for (Node child : NodeExpander.expandNode(problem, cur))
                     openList.add(child);
-                }
-            }
         }
+        return null;
     }
 }

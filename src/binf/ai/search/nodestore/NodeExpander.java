@@ -1,6 +1,5 @@
 package binf.ai.search.nodestore;
 
-import binf.ai.search.doolhof.DoolhofState;
 import java.util.List;
 import binf.ai.search.problem.Problem;
 import binf.ai.search.problem.Successor;

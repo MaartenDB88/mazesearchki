@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package binf.ai.search.uninformed;
 
 import binf.ai.search.framework.TreeSearch;
@@ -17,13 +16,14 @@ import java.util.List;
  */
 public class DepthFirstTreeSearchNoLimit extends TreeSearch {
 
-     private static NodeStore openList = new Stack();
+    private static NodeStore getOpenList() {
+        return new Stack();
+    }
 
-    public DepthFirstTreeSearchNoLimit(Problem problem){
-        super(problem, openList);
+    public DepthFirstTreeSearchNoLimit(Problem problem) {
+        super(problem, getOpenList());
 
         List<String> resultaat = this.search(problem);
         System.out.println(resultaat);
     }
-
 }

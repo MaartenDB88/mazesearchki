@@ -88,14 +88,14 @@ public class Run {
 
         Problem problem = new Problem(initState, new DoolhofSuccessorFunction(),
                 new DoolhofGoalTest(goalState), new DoolhofPathCostFunction(),
-                new DoolhofHeuristicFunction());
+                new DoolhofHeuristicFunction(goalState));
 
         //new AStarTreeSearch(problem);
         System.out.println("Breedte eerst zoeken treesearch");
         new BreadthFirstTreeSearch(problem);
 
         System.out.println("Diepte zoeken met limiet 9 treesearch");
-        new DepthFirstTreeSearchWithLimit(problem);
+        new DepthFirstTreeSearchWithLimit(problem, 9);
 
         System.out.println("TreeSearch met priorityqueue");
         new PriorityQueueTreeSearch(problem);
