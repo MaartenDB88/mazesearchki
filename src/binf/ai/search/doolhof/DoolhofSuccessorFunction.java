@@ -19,12 +19,10 @@ public class DoolhofSuccessorFunction implements SuccessorFunction {
     public List<Successor> getSuccessors(State state) {
         List<Successor> successors = new LinkedList<Successor>();
         DoolhofState doolhofState = (DoolhofState) state;
-        List<State> lijst = doolhofState.getSuccessors();
-
 
         int x = doolhofState.getxCord();
         int y = doolhofState.getyCord();
-        for (State stateSuccessor : lijst) {
+        for (State stateSuccessor : doolhofState.getSuccessors()) {
             int xSuc = ((DoolhofState) stateSuccessor).getxCord();
             int ySuc = ((DoolhofState) stateSuccessor).getyCord();
             if (x == xSuc) {
