@@ -11,9 +11,9 @@ import binf.ai.search.informed.DepthWithLimitGraphSearch;
 import binf.ai.search.informed.PriorityQueueGraphSearch;
 import binf.ai.search.problem.Problem;
 import binf.ai.search.uninformed.BreadthFirstTreeSearch;
-import binf.ai.search.uninformed.DepthFirstTreeSearchNoLimit;
 import binf.ai.search.uninformed.DepthFirstTreeSearchWithLimit;
 import binf.ai.search.uninformed.PriorityQueueTreeSearch;
+import java.io.File;
 
 /**
  *
@@ -21,12 +21,27 @@ import binf.ai.search.uninformed.PriorityQueueTreeSearch;
  */
 public class Run {
 
+    private static final int DEFAULT_DIMENSIE = 8;
+
     public static void main(String[] args) {
-
         GenereerDoolhof dh = new GenereerDoolhof();
+        Problem problem = null;
 
-        Problem problem = dh.getDoolhofVanBestand();
+        if (args.length != 0){
+            try {
+                File file = new File(args[1]);
+                problem = dh.getDoolhofVanBestand(new File("voorbeeldDoolhof.txt"));
+            } catch (Exception e){
+                System.out.println("Error making file object");
+                System.exit(-1);
+            }
+        } else {
+            problem = dh.getGegenereerdProblem(DEFAULT_DIMENSIE);
+        }
         dh.printDoolhof();
+
+       
+        
 
         System.out.println("Breedte eerst zoeken treesearch");
         new BreadthFirstTreeSearch(problem);
