@@ -4,6 +4,7 @@
  */
 package binf.ai.search.doolhof;
 
+import binf.ai.search.informed.AStarGraphSearch;
 import binf.ai.search.informed.AStarTreeSearch;
 import binf.ai.search.informed.BreadthFirstGraphSearch;
 import binf.ai.search.informed.DepthNoLimitGraphSearch;
@@ -46,32 +47,45 @@ public class Run {
         }
         dh.printDoolhof();
 
-        System.out.println("Breedte eerst zoeken treesearch");
+        System.out.println("\n");
+        System.out.println("Breedte eerst zoeken - treesearch");
         new BreadthFirstTreeSearch(problem);
 
-        System.out.println("Diepte zoeken met limiet 9 treesearch");
+        System.out.println("\n");
+        System.out.println("Diepte zoeken met limiet 9 - treesearch");
         new DepthFirstTreeSearchWithLimit(problem, 9);
 
+//        System.out.println("\n");
 //      Werkt niet correct zonder een limiet (Outofmemory error)
-//        System.out.println("Diepte eerst zonder limiet treesearch");
+//        System.out.println("Diepte eerst zoeken zonder limiet - treesearch");
 //        new DepthFirstTreeSearchNoLimit(problem);
 
-        System.out.println("TreeSearch met priorityqueue");
+        System.out.println("\n");
+        System.out.println("Kleinste kost eerst (priorityqueue) - treesearch");
         new PriorityQueueTreeSearch(problem);
 
-        System.out.println("GraphSearch met priorityqueue");
+        System.out.println("\n");
+        System.out.println("Kleinste kost eerst (priorityqueue) - graphsearch");
         new PriorityQueueGraphSearch(problem);
 
-        System.out.println("Breedte eerst zoeken graphsearch");
+        System.out.println("\n");
+        System.out.println("Breedte eerst zoeken - graphsearch");
         new BreadthFirstGraphSearch(problem);
 
-        System.out.println("Diepte eerst zoeken met limit 9 graphsearch");
+        System.out.println("\n");
+        System.out.println("Diepte eerst zoeken met limit 9 - graphsearch");
         new DepthWithLimitGraphSearch(problem, 9);
 
-        System.out.println("Diepte eerst zonder limiet graphsearch");
+        System.out.println("\n");
+        System.out.println("Diepte eerst zoeken zonder limiet - graphsearch");
         new DepthNoLimitGraphSearch(problem);
 
-        System.out.println("AStarTreeSearch");
+        System.out.println("\n");
+        System.out.println("AStarTreeSearch - treesearch");
         new AStarTreeSearch(problem);
+
+        System.out.println("\n");
+        System.out.println("AStarGraphSearch - graphsearch");
+        new AStarGraphSearch(problem);
     }
 }
