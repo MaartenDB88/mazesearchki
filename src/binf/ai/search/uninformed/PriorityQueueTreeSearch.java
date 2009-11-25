@@ -5,11 +5,9 @@
 package binf.ai.search.uninformed;
 
 import binf.ai.search.framework.TreeSearch;
-import binf.ai.search.nodestore.Node;
 import binf.ai.search.nodestore.NodeStore;
 import binf.ai.search.nodestore.PriorityQueueNodeStore;
 import binf.ai.search.problem.Problem;
-import java.util.Comparator;
 import java.util.List;
 
 /**
