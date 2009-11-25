@@ -5,7 +5,6 @@
 
 package binf.ai.search.doolhof;
 
-import binf.ai.search.nodestore.Node;
 import binf.ai.search.problem.HeuristicFunction;
 import binf.ai.search.problem.State;
 
@@ -27,10 +26,6 @@ public class DoolhofHeuristicFunction implements HeuristicFunction {
         int yDifference = ((DoolhofState)goal).getyCord()
                 - ((DoolhofState)state).getyCord();
 
-        int squareDifference = Math.min(Math.abs(xDifference),
-                                        Math.abs(yDifference));
-
-        return squareDifference * (float)Math.sqrt(2) 
-                + Math.abs(xDifference - yDifference);
+        return xDifference*xDifference + yDifference*yDifference;
     }
 }
