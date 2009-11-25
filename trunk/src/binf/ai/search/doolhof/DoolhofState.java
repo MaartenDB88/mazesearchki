@@ -6,8 +6,7 @@
 package binf.ai.search.doolhof;
 
 import binf.ai.search.problem.State;
-import binf.ai.search.problem.Successor;
-import java.util.ArrayList;
+import java.util.LinkedList;
 import java.util.List;
 
 /**
@@ -25,18 +24,11 @@ public class DoolhofState implements State {
         this.xCord = xCord;
         this.yCord = yCord;
         this.status = status;
-        successors = new ArrayList<State>();
+        successors = new LinkedList<State>();
     }
 
     public boolean sameState(State state) {
-        DoolhofState curState = (DoolhofState)state;
-        if (xCord == curState.getxCord() &&
-                yCord == curState.getyCord() &&
-                status.equals(curState.getStatus())){
-            return true;             
-        } else {
-            return false;
-        }
+        return this == state;
     }
 
     public Status getStatus() {
@@ -51,7 +43,7 @@ public class DoolhofState implements State {
         return yCord;
     }
 
-    public void addSuccessor(String action, State state){
+    public void addSuccessor(State state){
         successors.add(state);
     }
 
