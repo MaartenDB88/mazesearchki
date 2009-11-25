@@ -2,7 +2,6 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-
 package binf.ai.search.informed;
 
 import binf.ai.search.framework.GraphSearch;
@@ -18,11 +17,16 @@ import java.util.List;
  */
 public class DepthWithLimitGraphSearch extends GraphSearch {
 
-    private static NodeStore openList = new Stack();
-    private static ClosedList closedList = new ClosedList();
+    private static NodeStore getOpenList() {
+        return new Stack();
+    }
 
-    public DepthWithLimitGraphSearch(Problem problem, int limit){
-        super(problem, openList, closedList, limit);
+    private static ClosedList getClosedList() {
+        return new ClosedList();
+    }
+
+    public DepthWithLimitGraphSearch(Problem problem, int limit) {
+        super(problem, getOpenList(), getClosedList(), limit);
 
         List<String> resultaat = this.search(problem);
         System.out.println(resultaat);

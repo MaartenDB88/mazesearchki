@@ -18,11 +18,15 @@ import java.util.List;
  */
 public class DepthNoLimitGraphSearch extends GraphSearch {
 
-    private static NodeStore openList = new Stack();
-    private static ClosedList closedList = new ClosedList();
+    private static NodeStore getOpenList() {
+        return new Stack();
+    }
+    private static ClosedList getClosedList() {
+        return new ClosedList();
+    }
 
     public DepthNoLimitGraphSearch(Problem problem){
-        super(problem, openList, closedList);
+        super(problem, getOpenList(), getClosedList());
 
         List<String> resultaat = this.search(problem);
         System.out.println(resultaat);
