@@ -176,8 +176,7 @@ public class GenereerDoolhof {
                             relX < vierkant.length && relY < vierkant.length &&
                             ((DoolhofState) vierkant[relX][relY]).getStatus() != Status.OBSTACLE &&
                             ((DoolhofState) vierkant[x][y]).getStatus() != Status.OBSTACLE) {
-                        ((DoolhofState) vierkant[x][y]).addSuccessor(actie.toString(),
-                                vierkant[relX][relY]);
+                        ((DoolhofState) vierkant[x][y]).addSuccessor(vierkant[relX][relY]);
                     }
                 }
             }
