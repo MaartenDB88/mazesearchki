@@ -3,22 +3,34 @@ package binf.ai.search.informed;
 import java.util.Comparator;
 import binf.ai.search.framework.TreeSearch;
 import binf.ai.search.nodestore.Node;
-import binf.ai.search.nodestore.Stack;
+import binf.ai.search.nodestore.NodeStore;
+import binf.ai.search.nodestore.PriorityQueueNodeStore;
+import binf.ai.search.problem.HeuristicFunction;
 import binf.ai.search.problem.Problem;
+import java.util.List;
 
-// voorbeeld raamwerk klasse voor geinformeerde zoekmethode
-// stop alle geinformeerde zoekmethodes in deze package
 public class AStarTreeSearch extends TreeSearch {
+    private static NodeStore getOpenList(Problem problem) {
+        return new PriorityQueueNodeStore(getComparator(problem));
+    }
 
-    // instantieer hier een TreeSearch met correcte parameters...
-    // als voorbeeld stack
     public AStarTreeSearch(Problem problem) {
-        super(problem, new Stack());
+        super(problem, getOpenList(problem));
+
+        List<String> resultaat = this.search(problem);
+        System.out.println(resultaat);
     }
 
     private static Comparator<Node> getComparator(final Problem problem) {
         // dit zal je waarschijnlijk ook nodig hebben voor
         // sommige zoekmethodes (zoals A* zoeken)...
-        throw new UnsupportedOperationException("Not supported yet.");
+        return new Comparator<Node>() {
+            public int compare(Node o1, Node o2) {
+                HeuristicFunction heuristicFunction = problem.getHeuristicFunction();
+                float c1 = o1.getPathCost() + heuristicFunction.getHeuristicValue(o1.getState());
+                float c2 = o2.getPathCost() + heuristicFunction.getHeuristicValue(o2.getState());
+                return Float.compare(c1,c2);
+            }
+        };
     }
 }

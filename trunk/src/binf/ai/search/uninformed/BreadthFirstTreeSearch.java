@@ -12,11 +12,12 @@ import java.util.List;
 // zoekmethode
 public class BreadthFirstTreeSearch extends TreeSearch {
 
-    // of ander soort openlist
-    private static NodeStore openlist = new Queue();
+    private static NodeStore getOpenList() {
+        return new Queue();
+    }
 
     public BreadthFirstTreeSearch(Problem problem) {
-        super(problem, openlist);
+        super(problem, getOpenList());
         // instantieer een TreeSearch met de correcte parameters
         List<String> resultaat = this.search(problem);
         System.out.println(resultaat);
