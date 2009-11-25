@@ -110,14 +110,11 @@ public class Run {
 
         System.out.println("GraphSearch met priorityqueue");
         new PriorityQueueGraphSearch(dh.getGegenereerdProblem(100));
-        
-        
-
+       
         System.out.println("Breedte eerst zoeken graphsearch");
         new BreadthFirstGraphSearch(problem);
 
         System.out.println("Diepte eerst zoeken met limit 9 graphsearch");
-        new DepthWithLimitGraphSearch(problem);
-        
+        new DepthWithLimitGraphSearch(problem, 9);
     }
 }

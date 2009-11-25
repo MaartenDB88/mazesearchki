@@ -20,10 +20,9 @@ public class DepthWithLimitGraphSearch extends GraphSearch {
 
     private static NodeStore openList = new Stack();
     private static ClosedList closedList = new ClosedList();
-    private static int depthLimit = 9;
 
-    public DepthWithLimitGraphSearch(Problem problem){
-        super(problem, openList, closedList, depthLimit);
+    public DepthWithLimitGraphSearch(Problem problem, int limit){
+        super(problem, openList, closedList, limit);
 
         List<String> resultaat = this.search(problem);
         System.out.println(resultaat);
