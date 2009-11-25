@@ -7,8 +7,8 @@ package binf.ai.search.doolhof;
 
 import binf.ai.search.problem.State;
 import binf.ai.search.problem.Successor;
-import java.util.HashMap;
-import java.util.Map;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  *
@@ -19,13 +19,13 @@ public class DoolhofState implements State {
     private int xCord;
     private int yCord;
     private Status status;
-    private Map<String, Successor> successors;
+    private List<Successor> successors;
 
     public DoolhofState(int xCord, int yCord, Status status) {
         this.xCord = xCord;
         this.yCord = yCord;
         this.status = status;
-        successors = new HashMap<String, Successor>();
+        successors = new ArrayList<Successor>();
     }
 
     public boolean sameState(State state) {
@@ -51,23 +51,20 @@ public class DoolhofState implements State {
         return yCord;
     }
 
-    public Successor getSuccessor(String action){
-        return successors.get(action);
-    }
-
     public void addSuccessor(String action, State state){
-        successors.put(action, new Successor(action, state));
+        successors.add(new Successor(action, state));
     }
 
-    public void removeSuccessor(String action){
-        successors.remove(action);
-    }
-
+    @Override
     public String toString(){
         return "(" + xCord + "," + yCord + ")" + " " + status;
     }
 
     public void setStatus(Status status) {
         this.status = status;
+    }
+
+    List<Successor> getSuccessors() {
+        return successors;
     }
 }
