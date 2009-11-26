@@ -23,22 +23,22 @@ import java.io.File;
  */
 public class Run {
 
-    private static final int DEFAULT_DIMENSIE = 1000;
+    private static final int DEFAULT_DIMENSIE = 100;
 
     public static void main(String[] args) {
-        Doolhof dh = new Doolhof();
+        Doolhof doolhof = null;
         Problem problem = null;
-        long start;
-        long end;
 
         if (args.length != 0) {
             try {
-                problem = dh.getGegenereerdProblem(Integer.parseInt(args[0]));
+                doolhof = Doolhof.getProblemFromDimension(Integer.parseInt(args[0]));
+                problem = doolhof.getProblem();
             } catch (Exception e) {
                 System.out.println("Argument is not an Integer");
                 try {
                     File file = new File(args[0]);
-                    problem = dh.getDoolhofVanBestand(file);
+                    doolhof = Doolhof.getProblemFromFile(file);
+                    problem = doolhof.getProblem();
                 } catch (Exception ex) {
                     System.out.println("Error making file object or using diffrent dimension.");
                     System.exit(-1);
@@ -46,10 +46,12 @@ public class Run {
             }
 
         } else {
-            problem = dh.getGegenereerdProblem(DEFAULT_DIMENSIE);
-            //problem = dh.getDoolhofVanBestand(new File("voorbeeldDoolhof.txt"));
+            //doolhof = Doolhof.getProblemFromFile(new File("voorbeeldDoolhof.txt"));
+            doolhof = Doolhof.getProblemFromDimension(DEFAULT_DIMENSIE);
+            problem = doolhof.getProblem();
         }
-//        dh.printDoolhof();
+        
+//        System.out.println(doolhof);
 
 //        start = System.currentTimeMillis();
 //        System.out.println("\n");

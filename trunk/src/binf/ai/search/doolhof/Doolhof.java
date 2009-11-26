@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package binf.ai.search.doolhof;
 
 import binf.ai.search.problem.Problem;
@@ -15,22 +11,24 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Random;
 
-/**
- *
- * @author Stefan
- */
 public class Doolhof {
-    //int -> 0 (nul) = vrij vak; 1 = obstakel; 2 = startpositie agent, 3 = eindpositie;
     //String -> o (letter)  = vrij vak; x = obstakel; s = startpositie , g = eindpositie ;
 
-    private char[][] vierkant;
-    private State startBestand;
-    private State eindeBestand;
+    private Problem problem;
 
-    public Doolhof() {
+    private char[][] data;
+    private State initialState;
+    private State goalState;
+
+    public Doolhof(File file) {
+        problem = leesDoolhofUitBestand(file);
     }
 
-    private char[][] leesDoolhofVanBestand(File file) {
+    public Doolhof(int dimensie) {
+        problem = genereerDoolhof(dimensie);
+    }
+
+    private Problem leesDoolhofUitBestand(File file) {
         List<String> stringLijst = new ArrayList<String>();
         BufferedReader reader = null;
         try {
@@ -61,7 +59,7 @@ public class Doolhof {
 
         String[] dimensies = stringLijst.remove(0).split(",");
         int dimensie = Integer.parseInt(dimensies[0]);
-        vierkant = new char[dimensie][dimensie];
+        data = new char[dimensie][dimensie];
         char cStart = Status.START.getStatus();
         char cGoal = Status.GOAL.getStatus();
 
@@ -69,19 +67,22 @@ public class Doolhof {
         for (String elem : stringLijst) {
             char[] chars = elem.trim().toCharArray();
             for (int i = 0; i < chars.length; ++i) {
-                vierkant[i][teller] = chars[i];
-                if (chars[i] == cStart) startBestand = new DoolhofState(i, teller, Status.START);
-                else if (chars[i] == cGoal) eindeBestand = new DoolhofState(i, teller, Status.GOAL);
+                data[i][teller] = chars[i];
+                if (chars[i] == cStart) initialState = new DoolhofState(i, teller, Status.START);
+                else if (chars[i] == cGoal) goalState = new DoolhofState(i, teller, Status.GOAL);
             }
             teller++;
         }
-        return vierkant;
+
+        return new Problem(initialState, new DoolhofSuccessorFunction(data),
+                new DoolhofGoalTest(goalState), new DoolhofPathCostFunction(),
+                new DoolhofHeuristicFunction(goalState));
     }
 
-    public char[][] genereerDoolhof(int dimensie) {
+    private Problem genereerDoolhof(int dimensie) {
         Random random = new Random();
         int maxAantalObstakels = (dimensie * dimensie) / 4;
-        vierkant = new char[dimensie][dimensie];
+        data = new char[dimensie][dimensie];
 
         char cBlank = Status.BLANK.getStatus();
         char cStart = Status.START.getStatus();
@@ -91,57 +92,58 @@ public class Doolhof {
         //alle status op blank
         for (int y = 0; y < dimensie; y++) {
             for (int x = 0; x < dimensie; x++) {
-                vierkant[x][y] = cBlank;
+                data[x][y] = cBlank;
             }
         }
 
         //start
         int start = random.nextInt(dimensie - 1);
-        vierkant[start][dimensie - 1] = cStart;
-        startBestand = new DoolhofState(start, dimensie - 1, Status.START);
+        data[start][dimensie - 1] = cStart;
+        initialState = new DoolhofState(start, dimensie - 1, Status.START);
 
         //einde
         int einde = random.nextInt(dimensie - 1);
-        vierkant[einde][0] = cGoal;
-        eindeBestand = new DoolhofState(einde, 0, Status.GOAL);
+        data[einde][0] = cGoal;
+        goalState = new DoolhofState(einde, 0, Status.GOAL);
 
         //obstakels
         while (maxAantalObstakels > 0) {
             int randomRij = random.nextInt(dimensie);
             int randomKolom = random.nextInt(dimensie);
 
-            if (vierkant[randomRij][randomKolom] == cBlank) {
-                vierkant[randomRij][randomKolom] = cObstacle;
+            if (data[randomRij][randomKolom] == cBlank) {
+                data[randomRij][randomKolom] = cObstacle;
                 maxAantalObstakels--;
             }
         }
 
-        return vierkant;
+        return new Problem(initialState, new DoolhofSuccessorFunction(data),
+                new DoolhofGoalTest(goalState), new DoolhofPathCostFunction(),
+                new DoolhofHeuristicFunction(goalState));
     }
 
-    public void printDoolhof() {
-        for (int y = 0; y < vierkant.length; y++) {
-            for (int x = 0; x < vierkant.length; x++) {
+    public Problem getProblem() {
+        return problem;
+    }
 
-                System.out.print(vierkant[x][y]);
-
-            }
-            System.out.println();
+    @Override
+    public String toString() {
+        String output = "";
+        for (int y = 0; y < data.length; y++) {
+            for (int x = 0; x < data.length; x++)
+                output += data[x][y];
+            output += "\n";
         }
-        System.out.println();
+
+        return output;
     }
 
-    public Problem getGegenereerdProblem(int dimensie) {
-        genereerDoolhof(dimensie);
-        return new Problem(startBestand, new DoolhofSuccessorFunction(vierkant),
-                new DoolhofGoalTest(eindeBestand), new DoolhofPathCostFunction(),
-                new DoolhofHeuristicFunction(eindeBestand));
+    public static Doolhof getProblemFromDimension(int dimensie) {
+        return new Doolhof(dimensie);
+        
     }
 
-    public Problem getDoolhofVanBestand(File file) {
-        leesDoolhofVanBestand(file);
-        return new Problem(startBestand, new DoolhofSuccessorFunction(vierkant),
-                new DoolhofGoalTest(eindeBestand), new DoolhofPathCostFunction(),
-                new DoolhofHeuristicFunction(eindeBestand));
+    public static Doolhof getProblemFromFile(File file) {
+        return new Doolhof(file);
     }
 }
