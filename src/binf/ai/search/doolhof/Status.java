@@ -25,4 +25,8 @@ public enum Status {
     public String toString(){
         return Character.toString(status);
     }
+
+    public char getStatus() {
+        return status;
+    }
 }

@@ -2,7 +2,7 @@
  * To change this template, choose Tools | Templates
  * and open the template in the editor.
  */
-package binf.ai.search.informed;
+package binf.ai.search.uninformed;
 
 import binf.ai.search.framework.GraphSearch;
 import binf.ai.search.nodestore.ClosedList;

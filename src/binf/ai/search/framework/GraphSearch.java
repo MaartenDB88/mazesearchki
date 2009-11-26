@@ -34,13 +34,9 @@ public class GraphSearch implements Search {
         openList.add(root);
         int aantal=1;
 
-        while (true) {
-            if (openList.isEmpty()) {
-                return null;
-            }
+        while (!openList.isEmpty()) {
             Node cur = openList.remove();
-            boolean test = problem.isGoalState(cur.getState());
-            if (test) {
+            if (problem.isGoalState(cur.getState())) {
                 List<String> temp = new ArrayList<String>();
                 temp.add(cur.getPathFromRoot().toString());
                 temp.add("Solution :\n" +
@@ -61,5 +57,6 @@ public class GraphSearch implements Search {
                 }
             }
         }
+        return null;
     }
 }
