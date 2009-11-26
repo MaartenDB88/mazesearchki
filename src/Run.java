@@ -14,7 +14,7 @@ import java.io.File;
  */
 public class Run {
 
-    private static final int DEFAULT_DIMENSIE = 100;
+    private static final int DEFAULT_DIMENSIE = 8;
 
     public static void main(String[] args) {
         Doolhof doolhof = null;
@@ -39,13 +39,9 @@ public class Run {
             }
 
         } else {
-            //doolhof = Doolhof.getProblemFromFile(new File("voorbeeldDoolhof.txt"));
-            doolhof = Doolhof.getProblemFromDimension(DEFAULT_DIMENSIE);
-            problem = doolhof.getProblem();
+            new MainFrame().setVisible(true);
+            //doolhof = Doolhof.getProblemFromDimension(DEFAULT_DIMENSIE);
         }
-//        System.out.println(doolhof);
-
-        new MainFrame().setVisible(true);
 
 //        start = System.currentTimeMillis();
 //        System.out.println("\n");

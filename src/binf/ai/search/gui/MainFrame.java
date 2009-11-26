@@ -24,6 +24,8 @@ import binf.ai.search.uninformed.DepthWithLimitGraphSearch;
 import java.io.File;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
+import javax.swing.UIManager;
+import javax.swing.filechooser.FileFilter;
 
 /**
  *
@@ -37,6 +39,21 @@ public class MainFrame extends javax.swing.JFrame {
 
     /** Creates new form MainFrame */
     public MainFrame() {
+        try {
+            UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
+        } catch (Exception ex){}
+        fc.setCurrentDirectory(new File("."));
+        fc.setFileFilter(new FileFilter() {
+            public boolean accept(File file) {
+                if (file.getName().endsWith(".txt") || file.isDirectory()) return true;
+                else return false;
+            }
+
+            @Override
+            public String getDescription() {
+                return "Text file (*.txt)";
+            }
+        });
         initComponents();
     }
 
@@ -282,14 +299,15 @@ public class MainFrame extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
-//        int click = fc.showOpenDialog(this);
-//        if (click == JFileChooser.APPROVE_OPTION){
-//            jTextField1.setText("8");
-//            file = fc.getSelectedFile();
-//            jTextField2.setText(file.getName());
-//            doolhof = Doolhof.getProblemFromFile(file);
-//            setSearchesEnabled(true);
-//        }
+        int click = fc.showOpenDialog(this);
+        if (click == JFileChooser.APPROVE_OPTION){
+            jTextField1.setText("8");
+            file = fc.getSelectedFile();
+            jTextField2.setText(file.getName());
+            doolhof = Doolhof.getProblemFromFile(file);
+            System.out.println(doolhof);
+            setSearchesEnabled(true);
+        }
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
@@ -298,7 +316,7 @@ public class MainFrame extends javax.swing.JFrame {
             jTextField2.setText("Geen bestand geselecteerd");
             file = null;
             doolhof = Doolhof.getProblemFromDimension(dimensie);
-            System.out.println(doolhof.toString());
+            System.out.println(doolhof);
             setSearchesEnabled(true);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "De opgegeven dimensie is niet " +
@@ -403,5 +421,7 @@ public class MainFrame extends javax.swing.JFrame {
         jButton10.setEnabled(b);
         jButton11.setEnabled(b);
         jButton12.setEnabled(b);
+        jTextField3.setEnabled(b);
+        jTextField4.setEnabled(b);
     }
 }
