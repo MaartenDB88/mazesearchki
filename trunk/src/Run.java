@@ -4,17 +4,8 @@
  */
 
 import binf.ai.search.doolhof.Doolhof;
-import binf.ai.search.informed.AStarGraphSearch;
-import binf.ai.search.informed.AStarTreeSearch;
-import binf.ai.search.informed.PriorityQueueGraphSearch;
-import binf.ai.search.informed.PriorityQueueTreeSearch;
+import binf.ai.search.gui.MainFrame;
 import binf.ai.search.problem.Problem;
-import binf.ai.search.uninformed.BreadthFirstGraphSearch;
-import binf.ai.search.uninformed.BreadthFirstTreeSearch;
-import binf.ai.search.uninformed.DepthFirstTreeSearchNoLimit;
-import binf.ai.search.uninformed.DepthFirstTreeSearchWithLimit;
-import binf.ai.search.uninformed.DepthNoLimitGraphSearch;
-import binf.ai.search.uninformed.DepthWithLimitGraphSearch;
 import java.io.File;
 
 /**
@@ -28,6 +19,8 @@ public class Run {
     public static void main(String[] args) {
         Doolhof doolhof = null;
         Problem problem = null;
+        long start;
+        long end;
 
         if (args.length != 0) {
             try {
@@ -50,8 +43,9 @@ public class Run {
             doolhof = Doolhof.getProblemFromDimension(DEFAULT_DIMENSIE);
             problem = doolhof.getProblem();
         }
-        
 //        System.out.println(doolhof);
+
+        new MainFrame().setVisible(true);
 
 //        start = System.currentTimeMillis();
 //        System.out.println("\n");
@@ -117,11 +111,11 @@ public class Run {
 //        end = System.currentTimeMillis();
 //        System.out.println("Execution time was "+(end-start)+" ms.");
 //
-        start = System.currentTimeMillis();
-        System.out.println("\n");
-        System.out.println("AStarGraphSearch - graphsearch");
-        new AStarGraphSearch(problem);
-        end = System.currentTimeMillis();
-        System.out.println("Execution time was "+(end-start)+" ms.");
+//        start = System.currentTimeMillis();
+//        System.out.println("\n");
+//        System.out.println("AStarGraphSearch - graphsearch");
+//        new AStarGraphSearch(problem);
+//        end = System.currentTimeMillis();
+//        System.out.println("Execution time was "+(end-start)+" ms.");
     }
 }
