@@ -16,37 +16,32 @@ import java.util.List;
  */
 public class DoolhofSuccessorFunction implements SuccessorFunction {
 
+    private char[][] doolhof;
+
+    public DoolhofSuccessorFunction(char[][] doolhof) {
+        this.doolhof = doolhof;
+    }
+
     public List<Successor> getSuccessors(State state) {
         List<Successor> successors = new LinkedList<Successor>();
         DoolhofState doolhofState = (DoolhofState) state;
 
         int x = doolhofState.getxCord();
         int y = doolhofState.getyCord();
-        for (State stateSuccessor : doolhofState.getSuccessors()) {
-            int xSuc = ((DoolhofState) stateSuccessor).getxCord();
-            int ySuc = ((DoolhofState) stateSuccessor).getyCord();
-            if (x == xSuc) {
-                if (y == ySuc + 1) {
-                    successors.add(new Successor(Action.ZUID.toString(), stateSuccessor));
-                } else if (y == ySuc - 1) {
-                    successors.add(new Successor(Action.NOORD.toString(), stateSuccessor));
-                }
-            } else if (x == xSuc - 1) {
-                if (y == ySuc + 1) {
-                    successors.add(new Successor(Action.ZUIDWEST.toString(), stateSuccessor));
-                } else if (y == ySuc) {
-                    successors.add(new Successor(Action.WEST.toString(), stateSuccessor));
-                } else if (y == ySuc - 1) {
-                    successors.add(new Successor(Action.NOORDWEST.toString(), stateSuccessor));
-                }
-            } else if (x == xSuc + 1) {
-                if (y == ySuc + 1) {
-                    successors.add(new Successor(Action.ZUIDOOST.toString(), stateSuccessor));
-                } else if (y == ySuc) {
-                    successors.add(new Successor(Action.OOST.toString(), stateSuccessor));
-                } else if (y == ySuc - 1) {
-                    successors.add(new Successor(Action.NOORDOOST.toString(), stateSuccessor));
-                }
+
+        for (Action actie : Action.values()) {
+            int relX = x + actie.getRelativeX();
+            int relY = y + actie.getRelativeY();
+            if ((relX >= 0) && (relY >= 0) &&
+                 relX < doolhof.length && relY < doolhof.length &&
+                 doolhof[relX][relY] != Status.OBSTACLE.getStatus()) {
+
+                DoolhofState successorState = new DoolhofState(relX, relY, Status.BLANK);
+                if(doolhof[relX][relY] == Status.GOAL.getStatus())
+                    successorState.setStatus(Status.GOAL);
+                if(doolhof[relX][relY] == Status.START.getStatus())
+                    successorState.setStatus(Status.START);
+                successors.add(new Successor(actie.toString(), successorState));
             }
         }
         return successors;

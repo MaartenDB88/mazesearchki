@@ -17,13 +17,15 @@ public class NodeExpander {
         List<Node> nodeList = new ArrayList<Node>();
         List<Successor> successors = problem.getSuccessorFunction().getSuccessors(node.getState());
         for (Successor successor : successors) {
-            Node cur = new Node(node, successor.getState());
-            cur.setAction(successor.getAction());
-            cur.setPathCost(node.getPathCost() +
-                    problem.getPathCostFunction().calculatePathCost(node.getState(),
-                    successor.getState(), successor.getAction()));
-            cur.setDepth(node.getDepth() + 1);
-            nodeList.add(cur);
+            if (node.getParent()== null || !successor.getState().sameState(node.getParent().getState())) {
+                Node cur = new Node(node, successor.getState());
+                cur.setAction(successor.getAction());
+                cur.setPathCost(node.getPathCost() +
+                        problem.getPathCostFunction().calculatePathCost(node.getState(),
+                        successor.getState(), successor.getAction()));
+                cur.setDepth(node.getDepth() + 1);
+                nodeList.add(cur);
+            }
         }
         return nodeList;
     }

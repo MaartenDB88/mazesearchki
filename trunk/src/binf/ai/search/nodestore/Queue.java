@@ -1,14 +1,13 @@
 package binf.ai.search.nodestore;
 
-import java.util.ArrayList;
-import java.util.List;
+import java.util.ArrayDeque;
 
 public class Queue implements NodeStore {
 
-    private List<Node> list;
+    private java.util.Queue<Node> list;
 
     public Queue() {
-        this.list = new ArrayList<Node>();
+        this.list = new ArrayDeque<Node>();
     }
 
     public void add(Node aNode) {
@@ -16,7 +15,7 @@ public class Queue implements NodeStore {
     }
 
     public Node remove() {
-        return list.remove(0);
+        return list.poll();
     }
 
     public boolean isEmpty() {

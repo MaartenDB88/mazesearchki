@@ -4,6 +4,7 @@ import java.util.List;
 import binf.ai.search.nodestore.*;
 import binf.ai.search.problem.*;
 import java.util.ArrayList;
+import java.util.Arrays;
 
 public class TreeSearch implements Search {
 
@@ -38,12 +39,12 @@ public class TreeSearch implements Search {
                         "\n" + cur.toString());
                 return temp;
             }
-            if (cur.getDepth() <= depthLimit)
+            if (cur.getDepth() < depthLimit)
                 for (Node child : NodeExpander.expandNode(problem, cur)){
                     openList.add(child);
                     aantal++;
                 }
         }
-        return null;
+        return Arrays.asList("No solution");
     }
 }
