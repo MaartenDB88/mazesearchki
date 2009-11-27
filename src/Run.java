@@ -6,21 +6,23 @@
 import binf.ai.search.doolhof.Doolhof;
 import binf.ai.search.gui.MainFrame;
 import binf.ai.search.problem.Problem;
+import binf.ai.search.manager.UninformedSearchFactory;
 import java.io.File;
 
 /**
- *
- * @author Stefan
+ * beheert het programma, main klasse
  */
 public class Run {
 
     private static final int DEFAULT_DIMENSIE = 8;
 
+    /**
+     * entry point
+     * @param args
+     */
     public static void main(String[] args) {
         Doolhof doolhof = null;
         Problem problem = null;
-        long start;
-        long end;
 
         if (args.length != 0) {
             try {
@@ -44,28 +46,25 @@ public class Run {
 //            problem = doolhof.getProblem();
         }
 
-//        start = System.currentTimeMillis();
-//        System.out.println("\n");
-//        System.out.println("Breedte eerst zoeken - treesearch");
-//        new BreadthFirstTreeSearch(problem);
-//        end = System.currentTimeMillis();
-//        System.out.println("Execution time was "+(end-start)+" ms.");
+//        InformedSearchFactory informedSearchFactory =
+//                new InformedSearchFactory(doolhof, problem);
 //
-//        start = System.currentTimeMillis();
-//        System.out.println("\n");
-//        System.out.println("Diepte zoeken met limiet 9 - treesearch");
-//        new DepthFirstTreeSearchWithLimit(problem, 9);
-//        end = System.currentTimeMillis();
-//        System.out.println("Execution time was "+(end-start)+" ms.");
+//        informedSearchFactory.getManagedAStarTreeSearch().printManagedSearch();
+//        informedSearchFactory.getManagedPriorityQueueTreeSearch().printManagedSearch();
+//        informedSearchFactory.getManagedAStarGraphSearch().printManagedSearch();
+//        informedSearchFactory.getManagedPriorityQueueGraphSearch().printManagedSearch();
 //
-////        start = System.currentTimeMillis();
-////        System.out.println("\n");
-//////        Werkt niet correct zonder een limiet (Outofmemory error)
-////        System.out.println("Diepte eerst zoeken zonder limiet - treesearch");
-////        new DepthFirstTreeSearchNoLimit(problem);
-////        end = System.currentTimeMillis();
-////        System.out.println("Execution time was "+(end-start)+" ms.");
+//        UninformedSearchFactory uninformedSearchFactory =
+//                new UninformedSearchFactory(doolhof, problem);
 //
+<<<<<<< .mine
+//        uninformedSearchFactory.getManagedBreadthFirstTreeSearch().printManagedSearch();
+//        uninformedSearchFactory.getManagedDepthFirstTreeSearchNoLimit().printManagedSearch();
+//        uninformedSearchFactory.getManagedDepthFirstTreeSearchWithLimit(9).printManagedSearch();
+//        uninformedSearchFactory.getManagedBreadthFirstGraphSearch().printManagedSearch();
+//        uninformedSearchFactory.getManagedDepthFirstGraphSearchNoLimit().printManagedSearch();
+//        uninformedSearchFactory.getManagedDepthFirstGraphSearchWithLimit(9).printManagedSearch();
+=======
 //        start = System.currentTimeMillis();
 //        System.out.println("\n");
 //        System.out.println("Kleinste kost eerst (priorityqueue) - treesearch");
@@ -120,5 +119,6 @@ public class Run {
 //
 //        informedSearchFactory.getManagedAStarTreeSearch().printManagedSearch();
 //        informedSearchFactory.getManagedPriorityQueueTreeSearch().printManagedSearch();
+>>>>>>> .r57
     }
 }
