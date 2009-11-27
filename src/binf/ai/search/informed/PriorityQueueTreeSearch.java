@@ -22,8 +22,5 @@ public class PriorityQueueTreeSearch extends TreeSearch {
 
     public PriorityQueueTreeSearch(Problem problem) {
         super(problem, getOpenList(problem));
-
-        List<String> resultaat = this.search(problem);
-        System.out.println(resultaat);
     }
 }

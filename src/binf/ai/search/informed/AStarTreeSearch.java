@@ -7,7 +7,6 @@ import binf.ai.search.nodestore.NodeStore;
 import binf.ai.search.nodestore.PriorityQueueNodeStore;
 import binf.ai.search.problem.HeuristicFunction;
 import binf.ai.search.problem.Problem;
-import java.util.List;
 
 public class AStarTreeSearch extends TreeSearch {
     private static NodeStore getOpenList(Problem problem) {
@@ -16,9 +15,6 @@ public class AStarTreeSearch extends TreeSearch {
 
     public AStarTreeSearch(Problem problem) {
         super(problem, getOpenList(problem));
-
-        List<String> resultaat = this.search(problem);
-        System.out.println(resultaat);
     }
 
     private static Comparator<Node> getComparator(final Problem problem) {
