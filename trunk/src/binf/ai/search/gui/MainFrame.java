@@ -338,7 +338,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        uninformedSearchFactory.getManagedBreadthFirstTreeSearch();
+        uninformedSearchFactory.getManagedBreadthFirstTreeSearch().printManagedSearch();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -346,7 +346,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton3ActionPerformed
 
     private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        informedSearchFactory.getManagedAStarGraphSearch();
+        informedSearchFactory.getManagedAStarGraphSearch().printManagedSearch();
     }//GEN-LAST:event_jButton4ActionPerformed
 
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
@@ -354,20 +354,20 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
 
     private void jButton6ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton6ActionPerformed
-        informedSearchFactory.getManagedPriorityQueueGraphSearch();
+        informedSearchFactory.getManagedPriorityQueueGraphSearch().printManagedSearch();
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        uninformedSearchFactory.getManagedBreadthFirstGraphSearch();
+        uninformedSearchFactory.getManagedBreadthFirstGraphSearch().printManagedSearch();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        uninformedSearchFactory.getManagedDepthFirstTreeSearchNoLimit();
+        uninformedSearchFactory.getManagedDepthFirstTreeSearchNoLimit().printManagedSearch();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         try {
-            uninformedSearchFactory.getManagedDepthFirstTreeSearchWithLimit(Integer.parseInt(jTextField3.getText()));
+            uninformedSearchFactory.getManagedDepthFirstTreeSearchWithLimit(Integer.parseInt(jTextField3.getText())).printManagedSearch();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "De opgegeven diepte is niet " +
                     "correct. Gebruik een getal.", "Incorecte diepte",
@@ -376,12 +376,12 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        uninformedSearchFactory.getManagedDepthFirstGraphSearchNoLimit();
+        uninformedSearchFactory.getManagedDepthFirstGraphSearchNoLimit().printManagedSearch();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         try {
-            uninformedSearchFactory.getManagedDepthFirstGraphSearchWithLimit(Integer.parseInt(jTextField4.getText()));
+            uninformedSearchFactory.getManagedDepthFirstGraphSearchWithLimit(Integer.parseInt(jTextField4.getText())).printManagedSearch();
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "De opgegeven diepte is niet " +
                     "correct. Gebruik een getal.", "Incorecte diepte",

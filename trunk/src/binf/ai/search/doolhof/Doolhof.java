@@ -135,11 +135,12 @@ public class Doolhof {
                 maxAantalObstakels--;
             }
         }
-
+        DoolhofHeuristicFunction test = new DoolhofHeuristicFunction(goalState);
+        test.setUseSimpleHeuristic(false);
         // Maak het correcte Problem object aan
         return new Problem(initialState, new DoolhofSuccessorFunction(data),
                 new DoolhofGoalTest(goalState), new DoolhofPathCostFunction(),
-                new DoolhofHeuristicFunction(goalState));
+                test);
     }
 
     /**

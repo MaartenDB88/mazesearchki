@@ -40,7 +40,7 @@ public class DoolhofHeuristicFunction implements HeuristicFunction {
                 - ((DoolhofState)state).getyCord();
 
         // (heuristiek)^2 = (verschil in x)^2 + (verschil in y)^2
-        return (float) Math.sqrt(xDifference*xDifference + yDifference*yDifference);
+        return (float) xDifference*xDifference + yDifference*yDifference;
     }
 
     // geen kwadraten
