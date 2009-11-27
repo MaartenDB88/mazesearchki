@@ -1,13 +1,7 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
-
 package binf.ai.search.doolhof;
 
 /**
- *
- * @author Elias
+ * is een Status van een state
  */
 public enum Status {
     BLANK ('o'),
@@ -26,6 +20,10 @@ public enum Status {
         return Character.toString(status);
     }
 
+    /**
+     * geeft de status weer als een char object
+     * @return char
+     */
     public char getStatus() {
         return status;
     }

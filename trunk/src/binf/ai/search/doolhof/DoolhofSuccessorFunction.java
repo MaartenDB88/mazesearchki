@@ -1,7 +1,3 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package binf.ai.search.doolhof;
 
 import binf.ai.search.problem.State;
@@ -11,17 +7,25 @@ import java.util.LinkedList;
 import java.util.List;
 
 /**
- *
- * @author Elias
+ * is een functie die opvolgers kan berekenen van een state
  */
 public class DoolhofSuccessorFunction implements SuccessorFunction {
 
     private char[][] doolhof;
 
+    /**
+     * creeert een instantie
+     * @param doolhof de raw doolhof array
+     */
     public DoolhofSuccessorFunction(char[][] doolhof) {
         this.doolhof = doolhof;
     }
 
+    /**
+     * geeft een lijst van opvolgers voor de state weer
+     * @param state de state
+     * @return List van successors
+     */
     public List<Successor> getSuccessors(State state) {
         List<Successor> successors = new LinkedList<Successor>();
         DoolhofState doolhofState = (DoolhofState) state;
