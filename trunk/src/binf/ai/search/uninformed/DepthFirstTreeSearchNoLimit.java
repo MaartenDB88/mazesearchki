@@ -22,8 +22,5 @@ public class DepthFirstTreeSearchNoLimit extends TreeSearch {
 
     public DepthFirstTreeSearchNoLimit(Problem problem) {
         super(problem, getOpenList());
-
-        List<String> resultaat = this.search(problem);
-        System.out.println(resultaat);
     }
 }

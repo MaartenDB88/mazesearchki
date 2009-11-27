@@ -27,8 +27,5 @@ public class DepthWithLimitGraphSearch extends GraphSearch {
 
     public DepthWithLimitGraphSearch(Problem problem, int limit) {
         super(problem, getOpenList(), getClosedList(), limit);
-
-        List<String> resultaat = this.search(problem);
-        System.out.println(resultaat);
     }
 }
