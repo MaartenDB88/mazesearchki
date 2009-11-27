@@ -150,6 +150,14 @@ public class Doolhof {
         return problem;
     }
 
+    /**
+     * Geeft de array van chars van het doolhof terug
+     * @return char[][]
+     */
+    public char[][] getRawDoolhof() {
+        return data;
+    }
+
     // Geeft text versie van de doolhof weer
     @Override
     public String toString() {
