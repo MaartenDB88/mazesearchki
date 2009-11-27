@@ -7,7 +7,11 @@ public class PriorityQueueNodeStore implements NodeStore {
 
     private PriorityQueue<Node> list;
 
+    /**
+     * creeert een instantie
+     */
     public PriorityQueueNodeStore() {
+        // Standaard comparator met Float.compare van de padkost
         this(new Comparator<Node>() {
             public int compare(Node o1, Node o2) {
                 return Float.compare(o1.getPathCost(), o2.getPathCost());
@@ -15,6 +19,10 @@ public class PriorityQueueNodeStore implements NodeStore {
         });
     }
 
+    /**
+     * creeert een instantie
+     * @param comparator de custom Comparator voor deze PriorityQueue
+     */
     public PriorityQueueNodeStore(Comparator<Node> comparator) {
         list = new PriorityQueue<Node>(1, comparator);
     }
