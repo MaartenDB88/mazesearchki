@@ -11,6 +11,7 @@ public class TreeSearch implements Search {
     private static int NO_DEPTH_LIMIT = Integer.MAX_VALUE;
     private NodeStore openList;
     private int depthLimit;
+    private Node solution;
 
     public TreeSearch(Problem problem, NodeStore openList) {
         this.openList = openList;
@@ -32,6 +33,7 @@ public class TreeSearch implements Search {
         while (!openList.isEmpty()) {
             Node cur = openList.remove();
             if (problem.isGoalState(cur.getState())){
+                solution = cur;
                 List<String> temp = new ArrayList<String>();
                 String acties = "";
                 for (Node n : cur.getPathFromRoot())
@@ -51,5 +53,11 @@ public class TreeSearch implements Search {
                 }
         }
         return Arrays.asList("No solution");
+    }
+
+    public Node getSolutionTree() {
+        if(solution != null)
+            return solution;
+        return null;
     }
 }

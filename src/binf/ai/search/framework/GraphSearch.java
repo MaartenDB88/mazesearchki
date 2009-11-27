@@ -11,6 +11,7 @@ public class GraphSearch implements Search {
     private NodeStore openList;
     private ClosedList closedList;
     private int depthLimit;
+    private Node solution;
 
     public GraphSearch() {
     }
@@ -37,6 +38,7 @@ public class GraphSearch implements Search {
         while (!openList.isEmpty()) {
             Node cur = openList.remove();
             if (problem.isGoalState(cur.getState())) {
+                solution = cur;
                 List<String> temp = new ArrayList<String>();
                 String acties = "";
                 for (Node n : cur.getPathFromRoot())
@@ -62,6 +64,12 @@ public class GraphSearch implements Search {
                 }
             }
         }
+        return null;
+    }
+
+    public Node getSolutionTree() {
+        if(solution != null)
+            return solution;
         return null;
     }
 }
