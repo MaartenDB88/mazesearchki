@@ -39,12 +39,17 @@ public class MainFrame extends javax.swing.JFrame {
     public MainFrame() {
         try {
             UIManager.setLookAndFeel(UIManager.getSystemLookAndFeelClassName());
-        } catch (Exception ex){}
+        } catch (Exception ex) {
+        }
         fc.setCurrentDirectory(new File("."));
         fc.setFileFilter(new FileFilter() {
+
             public boolean accept(File file) {
-                if (file.getName().endsWith(".txt") || file.isDirectory()) return true;
-                else return false;
+                if (file.getName().endsWith(".txt") || file.isDirectory()) {
+                    return true;
+                } else {
+                    return false;
+                }
             }
 
             @Override
@@ -298,7 +303,7 @@ public class MainFrame extends javax.swing.JFrame {
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         int click = fc.showOpenDialog(this);
-        if (click == JFileChooser.APPROVE_OPTION){
+        if (click == JFileChooser.APPROVE_OPTION) {
             setSearchesEnabled(false);
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             jTextField1.setText("Geen dimensie opgegeven");
@@ -313,9 +318,8 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton2ActionPerformed
 
     private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        this.setSearchesEnabled(false);
         try {
-            
+            this.setSearchesEnabled(false);
             this.setCursor(Cursor.getPredefinedCursor(Cursor.WAIT_CURSOR));
             int dimensie = Integer.parseInt(jTextField1.getText().trim());
             jTextField2.setText("Geen bestand geselecteerd");
