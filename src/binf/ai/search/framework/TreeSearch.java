@@ -6,6 +6,9 @@ import binf.ai.search.problem.*;
 import java.util.ArrayList;
 import java.util.Arrays;
 
+/**
+ * kan zoeken in trees
+ */
 public class TreeSearch implements Search {
 
     private static int NO_DEPTH_LIMIT = Integer.MAX_VALUE;
@@ -13,51 +16,84 @@ public class TreeSearch implements Search {
     private int depthLimit;
     private Node solution;
 
+    /**
+     * creeert een instantie
+     * @param problem het Problem object
+     * @param openList de open list
+     */
     public TreeSearch(Problem problem, NodeStore openList) {
         this.openList = openList;
         this.depthLimit = NO_DEPTH_LIMIT;
     }
 
+    /**
+     * creeert een instantie
+     * @param problem het Problem object
+     * @param openList de open list
+     * @param depthLimit die maximale zoekdiepte
+     */
     public TreeSearch(Problem problem, NodeStore openList, int depthLimit) {
         this.openList = openList;
         this.depthLimit = depthLimit;
     }
 
+    /**
+     * voert het zoekalgoritme uit
+     * @param problem het Problem object
+     * @return List van String met output
+     */
     public List<String> search(Problem problem) {
-        // implementeer hier de tree search
-        // the initial state
+        // Stel de rootnode in and voeg toe aan de open lijst
         Node root = new Node(problem.getInitialState());
         openList.add(root);
+
+        // aantal is het totale aantal nodes die de open list ingegaan zijn
         int aantal = 1;
 
+        // Zolang er nog nodes over zijn...
         while (!openList.isEmpty()) {
+            // Neem de nieuwe node
             Node cur = openList.remove();
-            if (problem.isGoalState(cur.getState())){
+
+            // Bereikten we ons doel?
+            if (problem.isGoalState(cur.getState())) {
+                // Bereken de output
                 solution = cur;
-                List<String> temp = new ArrayList<String>();
+                List<String> output = new ArrayList<String>();
                 String acties = "";
-                for (Node n : cur.getPathFromRoot())
+                for (Node n : cur.getPathFromRoot()) {
                     acties += n.getAction() + "\n";
-//                temp.add(cur.getPathFromRoot().toString());
-                temp.add("Solution :\n==========\n\n" +
+                }
+                output.add("Solution :\n==========\n\n" +
                         "Path actions :\n" + acties + "\n" +
                         "Path cost : " + cur.getPathCost() + "\n" +
                         "Path depth : " + cur.getDepth() + "\n" +
                         "Number of nodes : " + aantal + "\n");
-                return temp;
+                return output;
             }
-            if (cur.getDepth() < depthLimit)
-                for (Node child : NodeExpander.expandNode(problem, cur)){
+
+            // Zijn we voorbij de diepte limiet?
+            if (cur.getDepth() < depthLimit) {
+                // Bereken de volgende nodes via NodeExpander
+                for (Node child : NodeExpander.expandNode(problem, cur)) {
+                    // Voeg ze toe aan de lijst
                     openList.add(child);
                     aantal++;
                 }
+            }
         }
-        return Arrays.asList("No solution");
+        // Geen uitkomst gevonden
+        return Arrays.asList("No solution found");
     }
-
+    
+    /**
+     * geeft de laatst gevonden node weer
+     * @return Node de laatste (goal) node
+     */
     public Node getSolutionTree() {
-        if(solution != null)
+        if (solution != null) {
             return solution;
+        }
         return null;
     }
 }

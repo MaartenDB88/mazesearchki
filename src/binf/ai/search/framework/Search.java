@@ -5,7 +5,20 @@ import java.util.List;
 
 import binf.ai.search.problem.Problem;
 
+/**
+ * beschrijft een zoekalgoritme
+ */
 public interface Search {
-	List<String> search(Problem p);
-        Node getSolutionTree();
+    /**
+     * laat het zoekalgoritme zoeken in het probleem
+     * @param p the Problem object
+     * @return List van String de output
+     */
+    List<String> search(Problem p);
+
+    /**
+     * geeft de laatst gevonden node weer
+     * @return Node de laatste (goal) node
+     */
+    Node getSolutionTree();
 }
