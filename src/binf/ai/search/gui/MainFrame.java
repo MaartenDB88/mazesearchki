@@ -12,12 +12,7 @@ package binf.ai.search.gui;
 
 import binf.ai.search.doolhof.Doolhof;
 import binf.ai.search.manager.InformedSearchFactory;
-import binf.ai.search.uninformed.BreadthFirstGraphSearch;
-import binf.ai.search.uninformed.BreadthFirstTreeSearch;
-import binf.ai.search.uninformed.DepthFirstTreeSearchNoLimit;
-import binf.ai.search.uninformed.DepthFirstTreeSearchWithLimit;
-import binf.ai.search.uninformed.DepthNoLimitGraphSearch;
-import binf.ai.search.uninformed.DepthWithLimitGraphSearch;
+import binf.ai.search.manager.UninformedSearchFactory;
 import java.awt.Cursor;
 import java.io.File;
 import javax.swing.JFileChooser;
@@ -34,6 +29,7 @@ public class MainFrame extends javax.swing.JFrame {
     private final JFileChooser fc = new JFileChooser();
     private File file;
     private InformedSearchFactory informedSearchFactory;
+    private UninformedSearchFactory uninformedSearchFactory;
 
     /** Creates new form MainFrame */
     public MainFrame() {
@@ -312,6 +308,8 @@ public class MainFrame extends javax.swing.JFrame {
             Doolhof doolhof = Doolhof.getProblemFromFile(file);
             informedSearchFactory =
                     new InformedSearchFactory(doolhof, doolhof.getProblem());
+            uninformedSearchFactory =
+                    new UninformedSearchFactory(doolhof, doolhof.getProblem());
             setSearchesEnabled(true);
             setCursor(Cursor.getPredefinedCursor(Cursor.DEFAULT_CURSOR));
         }
@@ -327,6 +325,8 @@ public class MainFrame extends javax.swing.JFrame {
             Doolhof doolhof = Doolhof.getProblemFromDimension(dimensie);
             informedSearchFactory =
                     new InformedSearchFactory(doolhof, doolhof.getProblem());
+            uninformedSearchFactory =
+                    new UninformedSearchFactory(doolhof, doolhof.getProblem());
             setSearchesEnabled(true);
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "De opgegeven dimensie is niet " +
@@ -338,8 +338,7 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
-        informedSearchFactory;
-        new BreadthFirstTreeSearch(doolhof.getProblem());
+        uninformedSearchFactory.getManagedBreadthFirstTreeSearch();
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
@@ -359,19 +358,16 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton6ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
-        informedSearchFactory;
-        new BreadthFirstGraphSearch(doolhof.getProblem());
+        uninformedSearchFactory.getManagedBreadthFirstGraphSearch();
     }//GEN-LAST:event_jButton8ActionPerformed
 
     private void jButton9ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton9ActionPerformed
-        informedSearchFactory;
-        new DepthFirstTreeSearchNoLimit(doolhof.getProblem());
+        uninformedSearchFactory.getManagedDepthFirstTreeSearchNoLimit();
     }//GEN-LAST:event_jButton9ActionPerformed
 
     private void jButton10ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton10ActionPerformed
         try {
-            informedSearchFactory;
-            new DepthFirstTreeSearchWithLimit(doolhof.getProblem(), Integer.parseInt(jTextField3.getText()));
+            uninformedSearchFactory.getManagedDepthFirstTreeSearchWithLimit(Integer.parseInt(jTextField3.getText()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "De opgegeven diepte is niet " +
                     "correct. Gebruik een getal.", "Incorecte diepte",
@@ -380,14 +376,12 @@ public class MainFrame extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton10ActionPerformed
 
     private void jButton11ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton11ActionPerformed
-        informedSearchFactory;
-        new DepthNoLimitGraphSearch(doolhof.getProblem());
+        uninformedSearchFactory.getManagedDepthFirstGraphSearchNoLimit();
     }//GEN-LAST:event_jButton11ActionPerformed
 
     private void jButton12ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton12ActionPerformed
         try {
-            informedSearchFactory;
-            new DepthWithLimitGraphSearch(doolhof.getProblem(), Integer.parseInt(jTextField4.getText()));
+            uninformedSearchFactory.getManagedDepthFirstGraphSearchWithLimit(Integer.parseInt(jTextField4.getText()));
         } catch (Exception ex) {
             JOptionPane.showMessageDialog(this, "De opgegeven diepte is niet " +
                     "correct. Gebruik een getal.", "Incorecte diepte",
