@@ -1,26 +1,25 @@
-/*
- * To change this template, choose Tools | Templates
- * and open the template in the editor.
- */
 package binf.ai.search.informed;
 
 import binf.ai.search.framework.TreeSearch;
 import binf.ai.search.nodestore.NodeStore;
 import binf.ai.search.nodestore.PriorityQueueNodeStore;
 import binf.ai.search.problem.Problem;
-import java.util.List;
 
 /**
- *
- * @author Elias
+ * implementeert een prioriteit graph zoek algoritme
  */
 public class PriorityQueueTreeSearch extends TreeSearch {
 
-    private static NodeStore getOpenList(Problem problem) {
+    // private factory die de nodestore ophaalt
+    private static NodeStore getOpenList() {
         return new PriorityQueueNodeStore();
     }
 
+    /**
+     * creeert een instatie
+     * @param problem het Problem object
+     */
     public PriorityQueueTreeSearch(Problem problem) {
-        super(problem, getOpenList(problem));
+        super(problem, getOpenList());
     }
 }
