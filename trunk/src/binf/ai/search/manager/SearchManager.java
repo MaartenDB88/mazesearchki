@@ -16,7 +16,7 @@ public class SearchManager {
     private final Problem problem;
     private final String name;
     private PrintStream out = System.out;
-    private boolean mazeVisible = true;
+    private int visibleLimit = 100;
 
     public SearchManager(Doolhof doolhof, Problem problem, Search search, String name) {
         this.doolhof = doolhof;
@@ -25,51 +25,6 @@ public class SearchManager {
         this.name = name;
     }
 
-//    private List<String> createMaze(char[][] doolhof) {
-//        List<String> output = new ArrayList<String>();
-//
-//        char[][] original = doolhof;
-//        char[][] array = multiArrayCopy(original);
-//
-//        for (int i = 0; i < array.length; ++i) {
-//            for (int j = 0; j < array[i].length; ++j) {
-//                switch (array[j][i]) {
-//                    case 'o':
-//                        array[j][i] = ' ';
-//                        break;
-//                    case 'x':
-//                        array[j][i] = 'X';
-//                        break;
-//                    case 's':
-//                        array[j][i] = 'S';
-//                        break;
-//                    case 'g':
-//                        array[j][i] = 'G';
-//                        break;
-//                }
-//            }
-//        }
-//        Node node = search.getSolutionTree();
-//        while (node != null) {
-//            DoolhofState state = (DoolhofState) node.getState();
-//            char c = array[state.getxCord()][state.getyCord()];
-//            if (array[state.getxCord()][state.getyCord()] != 'S' &&
-//                    array[state.getxCord()][state.getyCord()] != 'G') {
-//                array[state.getxCord()][state.getyCord()] = '#';
-//            }
-//            node = node.getParent();
-//        }
-//
-//        for (int i = 0; i < array.length; ++i) {
-//            String s = "|";
-//            for (int j = 0; j < array[i].length; ++j) {
-//                s += array[j][i] + "|";
-//            }
-//            output.add(s);
-//        }
-//
-//        return output;
-//    }
     private List<String> createMaze(char[][] doolhof) {
         List<String> output = new ArrayList<String>();
         char[][] array = doolhof;
@@ -111,34 +66,31 @@ public class SearchManager {
         return output;
     }
 
-//    private char[][] multiArrayCopy(char[][] source) {
-//        char[][] destination = new char[source.length][];
-//        for (int a = 0; a < source.length; a++) {
-//            destination[a] = new char[source[a].length];
-//            System.arraycopy(source[a], 0, destination[a], 0, source[a].length);
-//        }
-//        return destination;
-//    }
     public List<String> RunManagedSearch() {
-        List<String> output = new ArrayList<String>();
+        if (search != null) {
+            List<String> output = new ArrayList<String>();
 
-        output.add(name);
+            output.add(name);
 
-        long start = System.currentTimeMillis();
-        output.addAll(search.search(problem));
-        long end = System.currentTimeMillis();
+            long start = System.currentTimeMillis();
+            output.addAll(search.search(problem));
+            long end = System.currentTimeMillis();
 
-        output.add("Execution time was " + (end - start) + " ms.");
+            output.add("Execution time was " + (end - start) + " ms.");
 
-        output.add("\nMaze : \n");
+            output.add("\nMaze : \n");
 
-        if (mazeVisible) {
-            output.addAll(createMaze(doolhof.getRawDoolhof()));
+            if (visibleLimit > doolhof.getRawDoolhof().length) {
+                output.addAll(createMaze(doolhof.getRawDoolhof()));
+            }
+
+            output.add("\n");
+
+            search = null;
+
+            return output;
         }
-
-        output.add("\n");
-
-        return output;
+        return null;
     }
 
     public void printManagedSearch() {
@@ -147,11 +99,11 @@ public class SearchManager {
         }
     }
 
-    public boolean getMazeVisible() {
-        return mazeVisible;
+    public int getVisibleLimit() {
+        return visibleLimit;
     }
 
-    public void setMazeVisible(boolean mazeVisible) {
-        this.mazeVisible = mazeVisible;
+    public void setVisibleLimit(int visibleLimit) {
+        this.visibleLimit = visibleLimit;
     }
 }
