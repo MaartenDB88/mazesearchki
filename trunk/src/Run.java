@@ -4,8 +4,8 @@
  */
 
 import binf.ai.search.doolhof.Doolhof;
-import binf.ai.search.gui.MainFrame;
 import binf.ai.search.problem.Problem;
+import bing.ai.search.manager.InformedSearchFactory;
 import java.io.File;
 
 /**
@@ -39,8 +39,9 @@ public class Run {
             }
 
         } else {
-            new MainFrame().setVisible(true);
-            //doolhof = Doolhof.getProblemFromDimension(DEFAULT_DIMENSIE);
+//            new MainFrame().setVisible(true);
+            doolhof = Doolhof.getProblemFromDimension(DEFAULT_DIMENSIE);
+            problem = doolhof.getProblem();
         }
 
 //        start = System.currentTimeMillis();
@@ -113,5 +114,11 @@ public class Run {
 //        new AStarGraphSearch(problem);
 //        end = System.currentTimeMillis();
 //        System.out.println("Execution time was "+(end-start)+" ms.");
+
+        InformedSearchFactory informedSearchFactory =
+                new InformedSearchFactory(doolhof, problem);
+
+        informedSearchFactory.getManagedAStarTreeSearch().printManagedSearch();
+        informedSearchFactory.getManagedPriorityQueueTreeSearch().printManagedSearch();
     }
 }

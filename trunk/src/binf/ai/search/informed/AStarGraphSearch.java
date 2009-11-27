@@ -30,9 +30,6 @@ public class AStarGraphSearch extends GraphSearch {
 
     public AStarGraphSearch(Problem problem) {
         super(problem, getOpenList(problem), getClosedList());
-
-        List<String> resultaat = this.search(problem);
-        System.out.println(resultaat);
     }
 
     private static Comparator<Node> getComparator(final Problem problem) {

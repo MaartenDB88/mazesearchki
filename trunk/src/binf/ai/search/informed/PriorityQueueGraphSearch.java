@@ -27,8 +27,5 @@ public class PriorityQueueGraphSearch extends GraphSearch {
 
     public PriorityQueueGraphSearch(Problem problem){
         super(problem, getOpenList(problem), getClosedList());
-
-        List<String> resultaat = this.search(problem);
-        System.out.println(resultaat);
     }
 }
