@@ -29,6 +29,7 @@ public class DoolhofState implements State {
      * @return boolean
      */
     public boolean sameState(State state) {
+        // Vergelijk de coordinaten
         DoolhofState cur = (DoolhofState)state;
         if (this.status.equals(cur.getStatus()) &&
                 this.xCord == cur.getxCord() &&

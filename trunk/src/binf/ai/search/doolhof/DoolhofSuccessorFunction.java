@@ -33,6 +33,8 @@ public class DoolhofSuccessorFunction implements SuccessorFunction {
         int x = doolhofState.getxCord();
         int y = doolhofState.getyCord();
 
+        // Creeer tijdelijke Successor objects voor elke mogelijke actie
+        // Geef ze weer in de lijst
         for (Action actie : Action.values()) {
             int relX = x + actie.getRelativeX();
             int relY = y + actie.getRelativeY();
@@ -40,6 +42,7 @@ public class DoolhofSuccessorFunction implements SuccessorFunction {
                  relX < doolhof.length && relY < doolhof.length &&
                  doolhof[relX][relY] != Status.OBSTACLE.getStatus()) {
 
+                // Creeer de state
                 DoolhofState successorState = new DoolhofState(relX, relY, Status.BLANK);
                 if(doolhof[relX][relY] == Status.GOAL.getStatus())
                     successorState.setStatus(Status.GOAL);

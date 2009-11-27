@@ -17,6 +17,8 @@ public class DoolhofPathCostFunction implements PathCostFunction {
      * @return float vergelijking
      */
     public float calculatePathCost(State fromState, State toState, String action) {
+        // Wanneer de states niet gelijk zijn
+        // De kost van de actie teruggeven
         if (!((DoolhofState)fromState).sameState((DoolhofState)toState)){
             return Action.valueOf(action).getCost();
         } else {
