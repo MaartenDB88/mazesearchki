@@ -5,7 +5,7 @@
 
 import binf.ai.search.doolhof.Doolhof;
 import binf.ai.search.problem.Problem;
-import bing.ai.search.manager.InformedSearchFactory;
+import binf.ai.search.manager.InformedSearchFactory;
 import java.io.File;
 
 /**
