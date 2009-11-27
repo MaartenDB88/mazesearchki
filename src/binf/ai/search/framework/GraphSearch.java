@@ -38,10 +38,15 @@ public class GraphSearch implements Search {
             Node cur = openList.remove();
             if (problem.isGoalState(cur.getState())) {
                 List<String> temp = new ArrayList<String>();
-                temp.add(cur.getPathFromRoot().toString());
-                temp.add("Solution :\n" +
-                        "Number of nodes : " + aantal +
-                        "\n" + cur.toString());
+                String acties = "";
+                for (Node n : cur.getPathFromRoot())
+                    acties += n.getAction() + "\n";
+//                temp.add(cur.getPathFromRoot().toString());
+                temp.add("Solution :\n==========\n\n" +
+                        "Path actions :\n" + acties + "\n" +
+                        "Path cost : " + cur.getPathCost() + "\n" +
+                        "Path depth : " + cur.getDepth() + "\n" +
+                        "Number of nodes : " + aantal + "\n");
                 return temp;
             }
 
