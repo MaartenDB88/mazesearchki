@@ -25,11 +25,14 @@ public class DoolhofHeuristicFunction implements HeuristicFunction {
      * @return float
      */
     public float getHeuristicValue(State state) {
+        // bereken het verschil in x en y
         int xDifference = ((DoolhofState)goal).getxCord()
                 - ((DoolhofState)state).getxCord();
         int yDifference = ((DoolhofState)goal).getyCord()
                 - ((DoolhofState)state).getyCord();
 
-        return xDifference*xDifference + yDifference*yDifference;
+        // (heuristiek)^2 = (verschil in x)^2 + (verschil in y)^2
+        // Pythagoras
+        return (float) Math.sqrt(xDifference*xDifference + yDifference*yDifference);
     }
 }

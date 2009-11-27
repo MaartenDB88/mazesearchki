@@ -26,8 +26,5 @@ public class BreadthFirstGraphSearch extends GraphSearch {
 
     public BreadthFirstGraphSearch(Problem problem){
         super(problem, getOpenList(), getClosedList());
-
-        List<String> resultaat = this.search(problem);
-        System.out.println(resultaat);
     }
 }
