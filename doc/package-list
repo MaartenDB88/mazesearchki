@@ -1,0 +1,9 @@
+
+binf.ai.search.doolhof
+binf.ai.search.framework
+binf.ai.search.gui
+binf.ai.search.informed
+binf.ai.search.manager
+binf.ai.search.nodestore
+binf.ai.search.problem
+binf.ai.search.uninformed
