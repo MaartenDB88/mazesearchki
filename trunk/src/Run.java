@@ -6,7 +6,6 @@
 import binf.ai.search.doolhof.Doolhof;
 import binf.ai.search.gui.MainFrame;
 import binf.ai.search.problem.Problem;
-import binf.ai.search.manager.UninformedSearchFactory;
 import java.io.File;
 
 /**
@@ -45,80 +44,5 @@ public class Run {
 //            doolhof = Doolhof.getProblemFromDimension(DEFAULT_DIMENSIE);
 //            problem = doolhof.getProblem();
         }
-
-//        InformedSearchFactory informedSearchFactory =
-//                new InformedSearchFactory(doolhof, problem);
-//
-//        informedSearchFactory.getManagedAStarTreeSearch().printManagedSearch();
-//        informedSearchFactory.getManagedPriorityQueueTreeSearch().printManagedSearch();
-//        informedSearchFactory.getManagedAStarGraphSearch().printManagedSearch();
-//        informedSearchFactory.getManagedPriorityQueueGraphSearch().printManagedSearch();
-//
-//        UninformedSearchFactory uninformedSearchFactory =
-//                new UninformedSearchFactory(doolhof, problem);
-//
-<<<<<<< .mine
-//        uninformedSearchFactory.getManagedBreadthFirstTreeSearch().printManagedSearch();
-//        uninformedSearchFactory.getManagedDepthFirstTreeSearchNoLimit().printManagedSearch();
-//        uninformedSearchFactory.getManagedDepthFirstTreeSearchWithLimit(9).printManagedSearch();
-//        uninformedSearchFactory.getManagedBreadthFirstGraphSearch().printManagedSearch();
-//        uninformedSearchFactory.getManagedDepthFirstGraphSearchNoLimit().printManagedSearch();
-//        uninformedSearchFactory.getManagedDepthFirstGraphSearchWithLimit(9).printManagedSearch();
-=======
-//        start = System.currentTimeMillis();
-//        System.out.println("\n");
-//        System.out.println("Kleinste kost eerst (priorityqueue) - treesearch");
-//        new PriorityQueueTreeSearch(problem);
-//        end = System.currentTimeMillis();
-//        System.out.println("Execution time was "+(end-start)+" ms.");
-//
-//        start = System.currentTimeMillis();
-//        System.out.println("\n");
-//        System.out.println("Kleinste kost eerst (priorityqueue) - graphsearch");
-//        new PriorityQueueGraphSearch(problem);
-//        end = System.currentTimeMillis();
-//        System.out.println("Execution time was "+(end-start)+" ms.");
-//
-//        start = System.currentTimeMillis();
-//        System.out.println("\n");
-//        System.out.println("Breedte eerst zoeken - graphsearch");
-//        new BreadthFirstGraphSearch(problem);
-//        end = System.currentTimeMillis();
-//        System.out.println("Execution time was "+(end-start)+" ms.");
-//
-//        start = System.currentTimeMillis();
-//        System.out.println("\n");
-//        System.out.println("Diepte eerst zoeken met limit 9 - graphsearch");
-//        new DepthWithLimitGraphSearch(problem, 9);
-//        end = System.currentTimeMillis();
-//        System.out.println("Execution time was "+(end-start)+" ms.");
-//
-//        start = System.currentTimeMillis();
-//        System.out.println("\n");
-//        System.out.println("Diepte eerst zoeken zonder limiet - graphsearch");
-//        new DepthNoLimitGraphSearch(problem);
-//        end = System.currentTimeMillis();
-//        System.out.println("Execution time was "+(end-start)+" ms.");
-//
-//        start = System.currentTimeMillis();
-//        System.out.println("\n");
-//        System.out.println("AStarTreeSearch - treesearch");
-//        new AStarTreeSearch(problem);
-//        end = System.currentTimeMillis();
-//        System.out.println("Execution time was "+(end-start)+" ms.");
-//
-//        start = System.currentTimeMillis();
-//        System.out.println("\n");
-//        System.out.println("AStarGraphSearch - graphsearch");
-//        new AStarGraphSearch(problem);
-//        end = System.currentTimeMillis();
-//        System.out.println("Execution time was "+(end-start)+" ms.");
-
-//        InformedSearchFactory informedSearchFactory =
-//                new InformedSearchFactory(doolhof, problem);
-//
-//        informedSearchFactory.getManagedAStarTreeSearch().printManagedSearch();
-//        informedSearchFactory.getManagedPriorityQueueTreeSearch().printManagedSearch();
->>>>>>> .r57
     }
 }
